@@ -6,6 +6,8 @@
 
 **Hackathon Challenge**: Build a document compliance checker using Claude AI to validate ISO 19650 standards for Building Information Modeling (BIM).
 
+> 📢 **New to the hackathon?** Check out [HACKATHON.md](HACKATHON.md) for complete registration details, setup instructions, and community links!
+
 ## 🎯 Challenge Overview
 
 ISO 19650 is the international standard for information management using Building Information Modeling (BIM). This hackathon challenge is to build an intelligent document compliance checker that validates construction/BIM documents against ISO 19650 requirements.
@@ -85,7 +87,7 @@ Documents must meet these ISO 19650 requirements:
 
 ```bash
 # Clone repository
-git clone https://github.com/[your-org]/mace-digital-compliance-checker.git
+git clone https://github.com/stephencummins/mace-digital-compliance-checker.git
 cd mace-digital-compliance-checker
 
 # Create virtual environment
@@ -197,8 +199,10 @@ MIT License - see [LICENSE](LICENSE) file for details.
 
 ## 📞 Support
 
-- **Questions**: [Open an issue](https://github.com/[your-org]/mace-digital-compliance-checker/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/[your-org]/mace-digital-compliance-checker/discussions)
+- **Slack Community**: [maice-workspace.slack.com](https://maice-workspace.slack.com)
+- **Questions**: [Open an issue](https://github.com/stephencummins/mace-digital-compliance-checker/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/stephencummins/mace-digital-compliance-checker/discussions)
+- **Hackathon Info**: See [HACKATHON.md](HACKATHON.md) for registration and setup details
 
 ## 🎉 Good Luck!
 
