@@ -108,7 +108,7 @@ For integrating Google authentication in your solution:
 
 1. Go to [Google Cloud Console](https://console.cloud.google.com/)
 2. Create a new project or select an existing one
-3. Enable the Google+ API
+3. Configure the OAuth consent screen
 4. Create OAuth 2.0 credentials
 5. Add authorized redirect URIs
 6. Copy Client ID and Client Secret to your `.env` file
