@@ -6,7 +6,7 @@
 
 **Hackathon Challenge**: Build a document compliance checker using Claude AI to validate ISO 19650 standards for Building Information Modeling (BIM).
 
-> 📢 **New to the hackathon?** Check out [HACKATHON.md](HACKATHON.md) for complete registration details, setup instructions, and community links!
+> 📢 **New here?** Register on the **M+AI+CE site**: 👉 **[hackathon.stephen8n.com/p/mace](https://hackathon.stephen8n.com/p/mace)**. Then see [REGISTRATION.md](REGISTRATION.md) for setup and [HACKATHON.md](HACKATHON.md) for rules, levels, and judging.
 
 ## 🎯 Challenge Overview
 
@@ -105,17 +105,21 @@ cp .env.example .env
 ### Quick Start
 
 ```bash
-# Run validation on a single document
+# Run the starter validator on a single document
 python check_compliance.py path/to/document.pdf
-
-# Batch validate multiple documents
-python batch_validate.py path/to/documents/
-
-# Generate compliance report
-python generate_report.py --format html
 ```
 
+`check_compliance.py` is a working stub — implementing real validation is the
+challenge. Batch validation and report generation (e.g. `batch_validate.py`,
+`generate_report.py`) are examples of commands your Silver/Gold solution might
+expose; they are not provided.
+
 ## 📚 Project Structure
+
+> **Target layout.** Today the repo ships only `check_compliance.py` (a stub),
+> `requirements.txt`, `.env.example`, the markdown docs, `LICENSE`, and
+> `assets/`. The `src/`, `tests/`, `docs/`, and `examples/` trees below are
+> what you build out as part of the challenge.
 
 ```
 mace-digital-compliance-checker/
@@ -151,7 +155,7 @@ mace-digital-compliance-checker/
 
 ### Technical Resources
 - [Claude AI Documentation](https://docs.anthropic.com/)
-- [PyPDF2 Documentation](https://pypdf2.readthedocs.io/)
+- [pypdf Documentation](https://pypdf.readthedocs.io/)
 - [python-docx Documentation](https://python-docx.readthedocs.io/)
 
 ## 🏆 Judging Criteria

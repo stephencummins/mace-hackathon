@@ -8,10 +8,11 @@ Welcome to **M+AI+CE: The Hackathon** - a web-based hackathon focused on buildin
 
 ## 📅 Event Details
 
+- **Register**: 👉 [hackathon.stephen8n.com/p/mace](https://hackathon.stephen8n.com/p/mace) — sign in to begin
 - **Format**: Web-based hackathon
 - **Focus**: Developer tools for construction document compliance
 - **Technology Stack**: Claude AI, Python, GitHub
-- **Repository**: [mace-digital-compliance-checker](https://github.com/stephencummins/mace-digital-compliance-checker)
+- **Challenge code**: [mace-digital-compliance-checker](https://github.com/stephencummins/mace-digital-compliance-checker)
 
 ## 🚀 Getting Started
 
@@ -45,30 +46,33 @@ Before participating in the hackathon, you'll need to set up the following accou
 
 ### Registration Process
 
-To participate in the hackathon:
+Registration is handled entirely on the **M+AI+CE site** — there is no form to
+email or post in Slack:
 
-1. **Register Your Interest**
-   - Provide your GitHub account username (linked to Google)
-   - Provide your Google account email
+1. **Register**
+   - Go to **[hackathon.stephen8n.com/p/mace](https://hackathon.stephen8n.com/p/mace)** and click **"Sign In to Begin"**
+   - The site walks you through connecting your Claude, GitHub, and Google accounts and obtaining a Claude API key
 
-2. **Get Repository Access**
-   - You will be added as a collaborator to the repository
-   - Clone the repository: `git clone https://github.com/stephencummins/mace-digital-compliance-checker.git`
+2. **Get the Challenge Code**
+   - Clone this repo: `git clone https://github.com/stephencummins/mace-digital-compliance-checker.git`
 
 3. **Join the Community**
    - Slack Workspace: [maice-workspace.slack.com](https://maice-workspace.slack.com)
-   - Connect with other participants, mentors, and organizers
-   - Get real-time support and updates
+   - Connect with other participants, mentors, and organizers; get real-time support and updates
 
-## 🏗️ Project Structure
+Full step-by-step setup: see [REGISTRATION.md](REGISTRATION.md).
 
-This hackathon is built around a **website-based platform** where participants can:
+## 🌐 Hackathon Platform
 
-- Access hackathon resources and documentation
-- Submit their solutions
-- View leaderboards and progress
-- Collaborate with team members
-- Access sample documents and test cases
+The hackathon runs on the **M+AI+CE site**
+([hackathon.stephen8n.com/p/mace](https://hackathon.stephen8n.com/p/mace)) for:
+
+- Registration and sign-in
+- The getting-started flow (accounts + Claude API key)
+- Progress tracking and announcements
+
+This **GitHub repository is the challenge code** you build in. Community and
+support happen in [Slack](https://maice-workspace.slack.com).
 
 ## 🎓 Technical Setup
 
@@ -108,7 +112,7 @@ For integrating Google authentication in your solution:
 
 1. Go to [Google Cloud Console](https://console.cloud.google.com/)
 2. Create a new project or select an existing one
-3. Enable the Google+ API
+3. Configure the OAuth consent screen
 4. Create OAuth 2.0 credentials
 5. Add authorized redirect URIs
 6. Copy Client ID and Client Secret to your `.env` file
@@ -167,7 +171,7 @@ Join our Slack community for:
 
 ### Sample Documents
 
-The repository includes:
+Sample documents and test cases will be provided as part of the challenge scaffold:
 - Sample compliant documents
 - Sample non-compliant documents
 - Test cases for validation

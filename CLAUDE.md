@@ -11,6 +11,18 @@ Mace Digital Compliance Checker is a hackathon project for validating constructi
 - **Silver**: AI-powered content analysis with Claude
 - **Gold**: Full compliance suite with batch processing, dashboard, and API
 
+**Context:**
+- This is the **Mace** instance of the M+AI+CE hackathon — the first concrete
+  hackathon. A generic `ai-hackathon` template is intended to be derived from it
+  for reuse with other companies.
+- **Registration/onboarding happens on the M+AI+CE site**:
+  https://hackathon.stephen8n.com/p/mace — *not* in this repo. This repo is
+  only the challenge code participants build in after registering.
+- Community/support: Slack `https://maice-workspace.slack.com`.
+- ISO 19650 remains the target standard regardless of Mace's internal
+  Consult/Construct reorganisation — it is an external standard, unaffected by
+  corporate structure.
+
 ## Development Setup
 
 ```bash
@@ -24,6 +36,8 @@ pip install -r requirements.txt
 # Configure environment
 cp .env.example .env
 # Add your ANTHROPIC_API_KEY to .env
+# CLAUDE_MODEL defaults to claude-sonnet-4-6 (current Sonnet). Use a current
+# Claude model ID; do not hard-pin retired/older models.
 ```
 
 ## Common Commands
@@ -40,6 +54,11 @@ python check_compliance.py document.pdf --format json
 ```
 
 ## Project Structure
+
+**Target layout — not all of this exists yet.** Today the repo ships only
+`check_compliance.py` (a stub), `requirements.txt`, `.env.example`, the markdown
+docs, `LICENSE`, and `assets/`. The `src/`, `tests/`, `docs/`, and `examples/`
+trees below are what participants build out.
 
 ```
 mace-digital-compliance-checker/
@@ -84,7 +103,7 @@ Pattern: `PROJECT-ORIGINATOR-VOLUME-LEVEL-TYPE-ROLE-CLASSIFICATION-NUMBER_REVISI
 - **Click**: CLI framework
 - **Rich**: Terminal output formatting
 - **Anthropic Claude API**: AI-powered content analysis
-- **pdfplumber/PyPDF2**: PDF parsing
+- **pypdf**: PDF parsing (as pinned in `requirements.txt`)
 - **python-docx**: Word document parsing
 
 ## Implementation Tips
