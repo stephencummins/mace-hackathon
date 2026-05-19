@@ -44,6 +44,15 @@ Before participating in the hackathon, you'll need to set up the following accou
   - Obtain from: [Anthropic Console](https://console.anthropic.com/)
   - Add to your `.env` file as `ANTHROPIC_API_KEY`
 
+#### Required Tools (Windows)
+
+Install before cloning the challenge code — full step-by-step in
+[REGISTRATION.md](REGISTRATION.md):
+
+- **Python for Windows 3.11+** — https://www.python.org/downloads/windows/ (tick "Add to PATH")
+- **Git for Windows** — https://git-scm.com/download/win
+- **Node.js 18+ LTS**, then the **Claude CLI**: `npm install -g @anthropic-ai/claude-code` — https://docs.anthropic.com/en/docs/claude-code
+
 ### Registration Process
 
 Registration is handled entirely on the **M+AI+CE site** — there is no form to

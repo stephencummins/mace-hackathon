@@ -15,6 +15,25 @@ registered.
 3. Completing sign-in *is* your registration — there is no separate form to
    email or post in Slack.
 
+## 🪟 Prerequisites — install these first (Windows)
+
+The challenge is a Python project you build with the Claude CLI. On a fresh
+Windows machine, install these **before Step 4**:
+
+1. **Python for Windows (3.11+)** — https://www.python.org/downloads/windows/
+   Tick **"Add python.exe to PATH"** during install. Verify in a new terminal:
+   `python --version`.
+2. **Git for Windows** — https://git-scm.com/download/win
+   Needed to clone the repo. Verify: `git --version`.
+3. **GitHub account** — https://github.com/signup (also in Step 2; required
+   for the challenge code and submissions).
+4. **Claude CLI (Claude Code) for Windows** — the AI coding tool you build with:
+   - Install **Node.js 18+ LTS** first — https://nodejs.org/ (the CLI needs it).
+   - In PowerShell: `npm install -g @anthropic-ai/claude-code`
+   - Verify: `claude --version`. Run `claude` in the project folder and sign in
+     with your Anthropic account (Step 2). Current / native-installer docs:
+     https://docs.anthropic.com/en/docs/claude-code
+
 ## 🧰 Step 2: Accounts you'll need
 
 The site will prompt you for these; create them first if you don't have them:
