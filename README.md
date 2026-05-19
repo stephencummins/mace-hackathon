@@ -6,7 +6,7 @@
 
 **Hackathon Challenge**: Build a document compliance checker using Claude AI to validate ISO 19650 standards for Building Information Modeling (BIM).
 
-> 📢 **New here?** Register on the **M+AI+CE site**: 👉 **[hackathonai-vrkfonug.manus.space](https://hackathonai-vrkfonug.manus.space)**. Then see [REGISTRATION.md](REGISTRATION.md) for setup and [HACKATHON.md](HACKATHON.md) for rules, levels, and judging.
+> 📢 **New here?** Register on the **M+AI+CE site**: 👉 **[hackathon.stephen8n.com/p/mace](https://hackathon.stephen8n.com/p/mace)**. Then see [REGISTRATION.md](REGISTRATION.md) for setup and [HACKATHON.md](HACKATHON.md) for rules, levels, and judging.
 
 ## 🎯 Challenge Overview
 

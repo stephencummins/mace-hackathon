@@ -6,7 +6,7 @@ registered.
 
 ## 🚪 Step 1: Register on the M+AI+CE site
 
-👉 **https://hackathonai-vrkfonug.manus.space**
+👉 **https://hackathon.stephen8n.com/p/mace**
 
 1. Open the site and click **"Sign In to Begin"**.
 2. The site walks you through the getting-started flow: connecting your Claude,

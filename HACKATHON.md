@@ -8,7 +8,7 @@ Welcome to **M+AI+CE: The Hackathon** - a web-based hackathon focused on buildin
 
 ## 📅 Event Details
 
-- **Register**: 👉 [hackathonai-vrkfonug.manus.space](https://hackathonai-vrkfonug.manus.space) — sign in to begin
+- **Register**: 👉 [hackathon.stephen8n.com/p/mace](https://hackathon.stephen8n.com/p/mace) — sign in to begin
 - **Format**: Web-based hackathon
 - **Focus**: Developer tools for construction document compliance
 - **Technology Stack**: Claude AI, Python, GitHub
@@ -50,7 +50,7 @@ Registration is handled entirely on the **M+AI+CE site** — there is no form to
 email or post in Slack:
 
 1. **Register**
-   - Go to **[hackathonai-vrkfonug.manus.space](https://hackathonai-vrkfonug.manus.space)** and click **"Sign In to Begin"**
+   - Go to **[hackathon.stephen8n.com/p/mace](https://hackathon.stephen8n.com/p/mace)** and click **"Sign In to Begin"**
    - The site walks you through connecting your Claude, GitHub, and Google accounts and obtaining a Claude API key
 
 2. **Get the Challenge Code**
@@ -65,7 +65,7 @@ Full step-by-step setup: see [REGISTRATION.md](REGISTRATION.md).
 ## 🌐 Hackathon Platform
 
 The hackathon runs on the **M+AI+CE site**
-([hackathonai-vrkfonug.manus.space](https://hackathonai-vrkfonug.manus.space)) for:
+([hackathon.stephen8n.com/p/mace](https://hackathon.stephen8n.com/p/mace)) for:
 
 - Registration and sign-in
 - The getting-started flow (accounts + Claude API key)

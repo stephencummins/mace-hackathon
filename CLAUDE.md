@@ -16,7 +16,7 @@ Mace Digital Compliance Checker is a hackathon project for validating constructi
   hackathon. A generic `ai-hackathon` template is intended to be derived from it
   for reuse with other companies.
 - **Registration/onboarding happens on the M+AI+CE site**:
-  https://hackathonai-vrkfonug.manus.space — *not* in this repo. This repo is
+  https://hackathon.stephen8n.com/p/mace — *not* in this repo. This repo is
   only the challenge code participants build in after registering.
 - Community/support: Slack `https://maice-workspace.slack.com`.
 - ISO 19650 remains the target standard regardless of Mace's internal
