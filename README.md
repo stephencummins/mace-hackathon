@@ -105,21 +105,30 @@ cp .env.example .env
 ### Quick Start
 
 ```bash
-# Run the starter validator on a single document
-python check_compliance.py path/to/document.pdf
+# Verify the harness
+python check_compliance.py --help
+
+# Run the stub on a provided example (it returns placeholder output until
+# you implement the real validators — that's the challenge).
+python check_compliance.py examples/MAC-LIBDM-XX-00-DR-A-001_P01.pdf
 ```
 
-`check_compliance.py` is a working stub — implementing real validation is the
-challenge. Batch validation and report generation (e.g. `batch_validate.py`,
-`generate_report.py`) are examples of commands your Silver/Gold solution might
-expose; they are not provided.
+Two filename‑demonstration PDFs ship in `examples/` (one ISO 19650 compliant,
+one not). For Silver/Gold content validation, use your own BIM document.
+Step‑by‑step walkthrough: see [REGISTRATION.md](REGISTRATION.md) Step 5
+("First hour after cloning").
+
+Batch validation and report generation (e.g. `batch_validate.py`,
+`generate_report.py`) are examples of commands your Silver/Gold solution
+might expose; they are not provided.
 
 ## 📚 Project Structure
 
-> **Target layout.** Today the repo ships only `check_compliance.py` (a stub),
-> `requirements.txt`, `.env.example`, the markdown docs, `LICENSE`, and
-> `assets/`. The `src/`, `tests/`, `docs/`, and `examples/` trees below are
-> what you build out as part of the challenge.
+> **Target layout.** Today the repo ships `check_compliance.py` (a stub),
+> `requirements.txt`, `.env.example`, the markdown docs, `LICENSE`, `assets/`,
+> and `examples/` (two filename‑demonstration PDFs — see
+> [examples/README.md](examples/README.md)). The `src/`, `tests/`, and `docs/`
+> trees below are what you build out as part of the challenge.
 
 ```
 mace-digital-compliance-checker/

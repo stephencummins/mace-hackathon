@@ -74,12 +74,35 @@ Verify:
 python check_compliance.py --help
 ```
 
-## 🎯 Step 5: Start building
+## 🎯 Step 5: Start building — your first hour after cloning
 
-1. Read [HACKATHON.md](HACKATHON.md) (rules, levels, judging) and
-   [README.md](README.md) (the challenge brief).
-2. Pick a level — Bronze, Silver, or Gold.
-3. Fork the repo, create a branch, build, and submit via pull request or demo.
+```bash
+# 1) Verify the harness runs
+python check_compliance.py --help
+
+# 2) Try it against a provided example (the stub returns placeholder output
+#    until you implement the real validators — that's the challenge)
+python check_compliance.py examples/MAC-LIBDM-XX-00-DR-A-001_P01.pdf
+
+# 3) Drop into Claude inside the repo
+claude
+```
+
+Then ask Claude to scaffold Bronze. A good starter prompt to paste:
+
+> Implement Bronze-level validation. Write `src/validators/naming_validator.py`
+> that checks a document filename against the ISO 19650 pattern in `README.md`
+> (`PROJECT-ORIGINATOR-VOLUME-LEVEL-TYPE-ROLE-CLASSIFICATION-NUMBER_REVISION`).
+> Wire it into `check_compliance.py` so the result appears in the validation
+> table. Add a unit test under `tests/`.
+
+Iterate until `examples/MAC-LIBDM-XX-00-DR-A-001_P01.pdf` passes the naming
+check and `examples/floor plan ground.pdf` fails it. Then:
+
+1. Move on to **Silver** (AI content analysis) or **Gold** (full suite) — see
+   the Challenge Tasks in [README.md](README.md).
+2. Read [HACKATHON.md](HACKATHON.md) for rules + judging.
+3. Fork the repo, work on a branch, push, and submit via pull request or demo.
 
 ## 🆘 Troubleshooting
 

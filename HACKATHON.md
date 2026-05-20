@@ -180,11 +180,13 @@ Join our Slack community for:
 
 ### Sample Documents
 
-Sample documents and test cases will be provided as part of the challenge scaffold:
-- Sample compliant documents
-- Sample non-compliant documents
-- Test cases for validation
-- Example metadata structures
+The repo includes two **filename‑demonstration PDFs** in `examples/`:
+
+- `MAC-LIBDM-XX-00-DR-A-001_P01.pdf` — ISO 19650 compliant filename
+- `floor plan ground.pdf` — non-compliant filename
+
+These are deliberately minimal — useful for Bronze (file-naming) validation.
+For Silver/Gold content checks, use a real BIM document of your own.
 
 ## 🏆 Submission Guidelines
 
