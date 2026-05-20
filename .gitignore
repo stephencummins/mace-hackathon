@@ -45,6 +45,8 @@ test_documents/
 *.pdf
 *.docx
 *.xlsx
+# but the small filename-demonstration fixtures ship with the repo
+!examples/*.pdf
 
 # Logs
 *.log
