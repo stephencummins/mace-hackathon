@@ -76,6 +76,11 @@ python check_compliance.py --help
 
 ## 🎯 Step 5: Start building — your first hour after cloning
 
+> **New to Claude Code?** Optional crash-courses (free, with completion
+> certificates) on [Anthropic Academy](https://anthropic.skilljar.com) —
+> *Claude Code 101* (~1 hr) is the natural starting point. Full list in
+> [HACKATHON.md → Train & Certify](HACKATHON.md).
+
 ```bash
 # 1) Verify the harness runs
 python check_compliance.py --help

@@ -178,6 +178,36 @@ Join our Slack community for:
 - [UK BIM Framework](https://www.ukbimframework.org/)
 - [Google OAuth 2.0 Guide](https://developers.google.com/identity/protocols/oauth2)
 
+### 🎓 Train & Certify (optional)
+
+[Anthropic Academy](https://anthropic.skilljar.com) hosts **free, self-paced
+courses with completion certificates**. Most relevant for this hackathon:
+
+- **Claude Code 101** — entry level, ~1 hr. The agentic loop, installation,
+  the Explore → Plan → Code → Commit workflow.
+- **Claude Code in Action** — core tools, context management (`CLAUDE.md`,
+  `@`-mentions), Plan / Thinking Mode, custom commands, MCP servers, GitHub
+  integration, hooks. Also offered on Coursera.
+- **Skills in Claude Code** — building and sharing `SKILL.md`.
+- **Sub-agents in Claude Code** — delegation patterns.
+- **Building with the Claude API** — 84 lessons, 8+ hours, 10 quizzes if you
+  want to go beyond the CLI.
+
+**Suggested path for a structured cohort:** *Claude Code 101* → *Claude Code in
+Action* → *Skills* / *Sub-agents*. Completion certificates give participants
+something tangible.
+
+**Supporting material:**
+
+- [anthropics/courses](https://github.com/anthropics/courses) — Jupyter
+  notebooks for code-along learning.
+- [Anthropic Cookbook](https://github.com/anthropics/anthropic-cookbook) —
+  reference implementations.
+
+> **Note:** These are the same Academy materials that feed Anthropic's Claude
+> Code certification track — so running through them doubles as cert prep if
+> anyone wants to certify later.
+
 ### Sample Documents
 
 The repo includes two **filename‑demonstration PDFs** in `examples/`:
