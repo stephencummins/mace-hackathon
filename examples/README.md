@@ -1,8 +1,13 @@
 # Examples
 
-Two minimal PDFs whose **filenames** demonstrate the ISO 19650 naming check.
-Their *contents* are tiny placeholders — these fixtures are for **Bronze**
-(file-naming) validation only.
+Two minimal PDFs whose **filenames** demonstrate the ISO 19650 naming check —
+the BIM **worked example** for the hackathon. Their *contents* are tiny
+placeholders; these fixtures exercise **Bronze** (file-naming) validation only.
+
+For your own domain (quality manuals, bids, contracts, RAMS, finance docs,
+HR policy, planning subs — anything your team owns), **create equivalent
+fixtures** here: one filename that conforms to your team's pattern, one that
+doesn't.
 
 | File | Demonstrates |
 | --- | --- |

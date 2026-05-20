@@ -95,14 +95,22 @@ claude
 
 Then ask Claude to scaffold Bronze. A good starter prompt to paste:
 
-> Implement Bronze-level validation. Write `src/validators/naming_validator.py`
-> that checks a document filename against the ISO 19650 pattern in `README.md`
-> (`PROJECT-ORIGINATOR-VOLUME-LEVEL-TYPE-ROLE-CLASSIFICATION-NUMBER_REVISION`).
-> Wire it into `check_compliance.py` so the result appears in the validation
-> table. Add a unit test under `tests/`.
+> Implement Bronze-level validation for **my chosen domain**: <name the
+> document type your team works with — BIM, quality manual, bid response,
+> RAMS, contract, finance document, HR policy, planning submission, etc.>
+> Define the naming / reference pattern that's valid for it, then write
+> `src/validators/naming_validator.py` to check a filename against that
+> pattern. Wire it into `check_compliance.py` so the result appears in the
+> validation table. Add a unit test under `tests/`.
+>
+> *Worked example to copy if you want: BIM / ISO 19650 — pattern
+> `PROJECT-ORIGINATOR-VOLUME-LEVEL-TYPE-ROLE-CLASSIFICATION-NUMBER_REVISION`,
+> fixtures in `examples/`.*
 
-Iterate until `examples/MAC-LIBDM-XX-00-DR-A-001_P01.pdf` passes the naming
-check and `examples/floor plan ground.pdf` fails it. Then:
+Iterate until your own compliant/non‑compliant fixtures behave correctly
+(or, for the BIM worked example, until
+`examples/MAC-LIBDM-XX-00-DR-A-001_P01.pdf` passes and
+`examples/floor plan ground.pdf` fails). Then:
 
 1. Move on to **Silver** (AI content analysis) or **Gold** (full suite) — see
    the Challenge Tasks in [README.md](README.md).

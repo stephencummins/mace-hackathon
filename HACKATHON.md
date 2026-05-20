@@ -1,10 +1,10 @@
 # M+AI+CE: The Hackathon
 
-Welcome to **M+AI+CE: The Hackathon** - a web-based hackathon focused on building intelligent document compliance solutions for the construction industry using AI.
+Welcome to **M+AI+CE: The Hackathon** — a web‑based hackathon for building intelligent document validation tools with Claude. Open to every team across Mace: pick a document type that matters to *your* department.
 
 ## 🎯 Hackathon Overview
 
-**M+AI+CE** (Mace + AI + Compliance Excellence) is a hackathon challenge to build innovative solutions that leverage Claude AI to validate construction and BIM documents against ISO 19650 standards. This hackathon brings together developers, construction professionals, and AI enthusiasts to create tools that improve document compliance in the built environment sector.
+**M+AI+CE** (Mace + AI + Compliance Excellence) challenges every team across the company to build innovative document‑validation tools with Claude — for *any* document type your department uses. The repo ships a worked example for **ISO 19650 (BIM)**, but the same Bronze → Silver → Gold structure applies to quality manuals, RAMS, bid responses, contracts, finance documents, HR policy, planning submissions — anything your team owns.
 
 ## 📅 Event Details
 
@@ -128,25 +128,27 @@ For integrating Google authentication in your solution:
 
 ## 💻 Challenge Levels
 
-### 🥉 Bronze Level: Basic Validation
-Build a document validator that checks:
-- File naming conventions
+Each tier is generic — substitute the specifics of *your* chosen document type.
+
+### 🥉 Bronze Level: Structural Validation
+Validate the *shape* of a document for your domain:
+- File naming / reference pattern (e.g. ISO 19650 codes, contract id, SOP number)
 - Required metadata fields
-- Document structure compliance
+- Required sections / structure
 - Basic format requirements
 
-### 🥈 Silver Level: AI-Powered Analysis
-Enhance with Claude AI to:
-- Analyze document content for compliance
-- Check for required sections and clauses
-- Validate information exchange requirements
-- Identify missing mandatory information
+### 🥈 Silver Level: AI-Powered Content Analysis
+Use Claude to validate *substance*:
+- Verify the document contains what your domain requires
+- Flag missing mandatory clauses / sections / data
+- Flag ambiguous or incomplete content
+- Check internal consistency (dates align, references resolve, totals add up)
 
-### 🥇 Gold Level: Full Compliance Suite
-Create a comprehensive system with:
+### 🥇 Gold Level: Full Validation Suite
+Production-grade:
 - Multi-document batch validation
-- Compliance reporting dashboard
-- Auto-correction suggestions
+- Reporting dashboard
+- Auto-correction / improvement suggestions
 - Integration with SharePoint/Azure
 - Real-time validation API
 
@@ -210,13 +212,15 @@ something tangible.
 
 ### Sample Documents
 
-The repo includes two **filename‑demonstration PDFs** in `examples/`:
+The repo includes two **filename‑demonstration PDFs** in `examples/` for the
+BIM / ISO 19650 worked example:
 
-- `MAC-LIBDM-XX-00-DR-A-001_P01.pdf` — ISO 19650 compliant filename
+- `MAC-LIBDM-XX-00-DR-A-001_P01.pdf` — compliant filename
 - `floor plan ground.pdf` — non-compliant filename
 
-These are deliberately minimal — useful for Bronze (file-naming) validation.
-For Silver/Gold content checks, use a real BIM document of your own.
+For your own domain, **create equivalent fixtures**: one filename that follows
+your team's pattern, one that doesn't. For Silver/Gold content checks, use a
+real document from your department.
 
 ## 🏆 Submission Guidelines
 
