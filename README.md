@@ -4,77 +4,100 @@
 [![Python 3.11+](https://img.shields.io/badge/python-3.11+-blue.svg)](https://www.python.org/downloads/)
 [![Powered by Claude](https://img.shields.io/badge/AI-Claude-purple.svg)](https://www.anthropic.com/claude)
 
-**Hackathon Challenge**: Build a document compliance checker using Claude AI to validate ISO 19650 standards for Building Information Modeling (BIM).
+**Hackathon Challenge**: Build an AI‑powered document validator with Claude — for *any* document type your team works with. The repo ships a worked example for **ISO 19650 / BIM**; swap in your own domain.
 
 > 📢 **New here?** Register on the **M+AI+CE site**: 👉 **[hackathon.stephen8n.com/p/mace](https://hackathon.stephen8n.com/p/mace)**. Then see [REGISTRATION.md](REGISTRATION.md) for setup and [HACKATHON.md](HACKATHON.md) for rules, levels, and judging.
 
 ## 🎯 Challenge Overview
 
-ISO 19650 is the international standard for information management using Building Information Modeling (BIM). This hackathon challenge is to build an intelligent document compliance checker that validates construction/BIM documents against ISO 19650 requirements.
+Pick a document type your team works with — *anything* — and build an
+AI‑powered validator with Claude. The **Bronze → Silver → Gold** structure
+below applies regardless of domain: you bring the rules, Claude helps you
+enforce them at scale.
 
-## 🏗️ What is ISO 19650?
+## 🏗️ Worked example: ISO 19650 (BIM)
 
-ISO 19650 defines how information should be managed throughout the lifecycle of a built asset using BIM. It covers:
+The starter content and fixtures (`examples/`) in this repo demo the
+BIM / ISO 19650 case. ISO 19650 defines how information is managed across
+the lifecycle of a built asset:
 
-- **ISO 19650-1**: Concepts and principles
-- **ISO 19650-2**: Delivery phase of assets
-- **ISO 19650-3**: Operational phase of assets
-- **ISO 19650-5**: Security-minded approach
+- **ISO 19650-1** — Concepts and principles
+- **ISO 19650-2** — Delivery phase of assets
+- **ISO 19650-3** — Operational phase of assets
+- **ISO 19650-5** — Security-minded approach
 
-Key requirements include:
-- Structured information exchange
-- Clear naming conventions
-- Metadata requirements
-- Information delivery milestones
-- Collaboration procedures
+Key requirements: structured information exchange, clear naming
+conventions, metadata, delivery milestones, collaboration procedures.
+
+### Other domains to consider
+
+Swap BIM/ISO 19650 for any document type your team owns. A few starting
+points:
+
+- **Quality (ISO 9001)** — SOPs, procedure docs, audit reports
+- **Health & Safety (ISO 45001)** — RAMS, method statements, safe systems of work
+- **Bids & Tenders** — RFP responses, capability statements, PQQ submissions
+- **Contracts & Legal** — NDAs, MSAs, change orders, variations
+- **Finance** — invoices, expense reports, purchase orders, approval forms
+- **HR** — policy documents, job descriptions, performance reviews
+- **Project Management** — PIDs, project briefs, status reports, lessons learned
+- **Planning Submissions** — planning applications, design & access statements
+
+Use the worked example as a template — replace its filename/structure
+rules with whatever pattern matters to *your* team.
 
 ## 🚀 Challenge Tasks
 
-### 🥉 Bronze Level: Basic Validation
-Build a document validator that checks:
-- [ ] File naming conventions (e.g., `PROJECT-ORIGINATOR-VOLUME-LEVEL-TYPE-ROLE-CLASSIFICATION-NUMBER_REVISION`)
-- [ ] Required metadata fields
-- [ ] Document structure compliance
-- [ ] Basic format requirements
+Pick a domain (see above), then ladder through three tiers. Each tier is
+described generically — substitute the specifics of *your* document type.
 
-### 🥈 Silver Level: AI-Powered Analysis
-Enhance with Claude AI to:
-- [ ] Analyze document content for compliance
-- [ ] Check for required sections and clauses
-- [ ] Validate information exchange requirements
-- [ ] Identify missing mandatory information
+### 🥉 Bronze Level: Structural Validation
+Build a validator that checks the *shape* of a document:
+- [ ] File naming / reference pattern (your domain's convention — e.g. an ISO 19650 code, a contract id like `MSA-<client>-<rev>`, an SOP number like `QMS-001-A`)
+- [ ] Required metadata fields (author, dates, version, classification — whatever your domain mandates)
+- [ ] Required sections / structure
+- [ ] Basic format requirements (file type, page size, etc. if relevant)
 
-### 🥇 Gold Level: Full Compliance Suite
-Create a comprehensive system with:
+### 🥈 Silver Level: AI-Powered Content Analysis
+Enhance with Claude to check the *substance*:
+- [ ] Read the document with Claude and verify it contains what your domain requires
+- [ ] Check for missing mandatory clauses / sections / data
+- [ ] Flag ambiguous, contradictory, or incomplete content
+- [ ] Validate internal consistency (dates align, references resolve, totals add up)
+
+### 🥇 Gold Level: Full Validation Suite
+Create a production-grade tool:
 - [ ] Multi-document batch validation
-- [ ] Compliance reporting dashboard
-- [ ] Auto-correction suggestions
-- [ ] Integration with SharePoint/Azure
+- [ ] Reporting dashboard
+- [ ] Auto-correction / improvement suggestions
+- [ ] Integration with where your team's docs live (SharePoint, document libraries, ticketing, etc.)
 - [ ] Real-time validation API
 
 ## 📋 Requirements Checklist
 
-Documents must meet these ISO 19650 requirements:
+The same three‑bucket shape applies to any domain — fill in the specifics
+for your document type.
 
-### File Naming
-- [ ] Project code present
-- [ ] Originator code included
-- [ ] Volume/system code specified
-- [ ] Classification code correct
-- [ ] Revision status indicated
+### File Naming / Reference
+- [ ] What pattern identifies a valid document of this type?
+- [ ] Which codes / segments are mandatory?
+- [ ] How is revision / version expressed?
 
 ### Metadata
-- [ ] Author information
-- [ ] Creation date
-- [ ] Approval status
-- [ ] Information container
-- [ ] Security classification
+- [ ] What fields must be present (author, dates, approval state, classification…)?
+- [ ] What values are valid?
 
 ### Content Structure
-- [ ] Title block present
-- [ ] Revision history included
-- [ ] Required sections present
-- [ ] Appropriate level of information need
+- [ ] What sections / clauses must be present?
+- [ ] What is the appropriate level of detail?
+- [ ] What revision / audit trail is required?
+
+> **BIM / ISO 19650 worked example:** filename codes
+> `PROJECT-ORIGINATOR-VOLUME-LEVEL-TYPE-ROLE-CLASSIFICATION-NUMBER_REVISION`;
+> metadata fields *author, creation date, approval status, information
+> container, security classification*; structure expectations *title block,
+> revision history, required sections, appropriate level of information
+> need*. Substitute equivalents for your own domain.
 
 ## 🛠️ Getting Started
 
