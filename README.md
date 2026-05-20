@@ -110,8 +110,8 @@ for your document type.
 
 ```bash
 # Clone repository
-git clone https://github.com/stephencummins/mace-digital-compliance-checker.git
-cd mace-digital-compliance-checker
+git clone https://github.com/stephencummins/mace-hackathon.git
+cd mace-hackathon
 
 # Create virtual environment
 python -m venv venv
@@ -154,7 +154,7 @@ might expose; they are not provided.
 > trees below are what you build out as part of the challenge.
 
 ```
-mace-digital-compliance-checker/
+mace-hackathon/
 ├── README.md                      # This file
 ├── requirements.txt               # Python dependencies
 ├── .env.example                   # Environment variables template
@@ -236,8 +236,8 @@ MIT License - see [LICENSE](LICENSE) file for details.
 ## 📞 Support
 
 - **Slack Community**: [maice-workspace.slack.com](https://maice-workspace.slack.com)
-- **Questions**: [Open an issue](https://github.com/stephencummins/mace-digital-compliance-checker/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/stephencummins/mace-digital-compliance-checker/discussions)
+- **Questions**: [Open an issue](https://github.com/stephencummins/mace-hackathon/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/stephencummins/mace-hackathon/discussions)
 - **Hackathon Info**: See [HACKATHON.md](HACKATHON.md) for registration and setup details
 
 ## 🎉 Good Luck!

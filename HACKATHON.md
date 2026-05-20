@@ -12,7 +12,7 @@ Welcome to **M+AI+CE: The Hackathon** — a web‑based hackathon for building i
 - **Format**: Web-based hackathon
 - **Focus**: Developer tools for construction document compliance
 - **Technology Stack**: Claude AI, Python, GitHub
-- **Challenge code**: [mace-digital-compliance-checker](https://github.com/stephencummins/mace-digital-compliance-checker)
+- **Challenge code**: [mace-hackathon](https://github.com/stephencummins/mace-hackathon)
 
 ## 🚀 Getting Started
 
@@ -63,7 +63,7 @@ email or post in Slack:
    - The site walks you through connecting your Claude, GitHub, and Google accounts and obtaining a Claude API key
 
 2. **Get the Challenge Code**
-   - Clone this repo: `git clone https://github.com/stephencummins/mace-digital-compliance-checker.git`
+   - Clone this repo: `git clone https://github.com/stephencummins/mace-hackathon.git`
 
 3. **Join the Community**
    - Slack Workspace: [maice-workspace.slack.com](https://maice-workspace.slack.com)
@@ -88,8 +88,8 @@ support happen in [Slack](https://maice-workspace.slack.com).
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/stephencummins/mace-digital-compliance-checker.git
-cd mace-digital-compliance-checker
+git clone https://github.com/stephencummins/mace-hackathon.git
+cd mace-hackathon
 ```
 
 ### 2. Set Up Development Environment
@@ -285,7 +285,7 @@ Projects will be evaluated on:
 ## 📞 Contact & Support
 
 - **Slack**: [maice-workspace.slack.com](https://maice-workspace.slack.com)
-- **GitHub Issues**: [Report issues here](https://github.com/stephencummins/mace-digital-compliance-checker/issues)
+- **GitHub Issues**: [Report issues here](https://github.com/stephencummins/mace-hackathon/issues)
 - **Email**: Contact organizers through Slack
 
 ## 🌟 Acknowledgments

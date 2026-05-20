@@ -56,8 +56,8 @@ The site will prompt you for these; create them first if you don't have them:
 ## 💻 Step 4: Get the challenge code
 
 ```bash
-git clone https://github.com/stephencummins/mace-digital-compliance-checker.git
-cd mace-digital-compliance-checker
+git clone https://github.com/stephencummins/mace-hackathon.git
+cd mace-hackathon
 
 python -m venv venv
 source venv/bin/activate  # Windows: venv\Scripts\activate

@@ -61,7 +61,7 @@ docs, `LICENSE`, and `assets/`. The `src/`, `tests/`, `docs/`, and `examples/`
 trees below are what participants build out.
 
 ```
-mace-digital-compliance-checker/
+mace-hackathon/
 ├── check_compliance.py      # Main CLI entry point
 ├── src/
 │   ├── validators/          # Validation logic
