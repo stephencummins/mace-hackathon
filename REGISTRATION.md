@@ -72,19 +72,18 @@ Then run `claude` — you should be connected without needing to authenticate vi
 
 ## 💻 Step 4: Get the challenge code
 
+This downloads the challenge to your laptop. Open PowerShell and run:
+
 ```bash
 git clone https://github.com/stephencummins/mace-hackathon.git
 cd mace-hackathon
 
 python -m venv venv
-source venv/bin/activate  # Windows: venv\Scripts\activate
+venv\Scripts\activate
 
 pip install -r requirements.txt
 
 cp .env.example .env
-# Edit .env — on Mace's network set BOTH of these:
-# ANTHROPIC_BASE_URL=https://api.stephen8n.com
-# ANTHROPIC_API_KEY=sk-ant-...   (your key from Step 2)
 ```
 
 Verify:
@@ -130,7 +129,7 @@ Iterate until your own compliant/non‑compliant fixtures behave correctly
 1. Move on to **Silver** (AI content analysis) or **Gold** (full suite) — see
    the Challenge Tasks in [README.md](README.md).
 2. Read [HACKATHON.md](HACKATHON.md) for rules + judging.
-3. Fork the repo, work on a branch, push, and submit via pull request or demo.
+3. Bring a working demo on the day — or ask in Slack `#announcements` for submission details.
 
 ## 🆘 Troubleshooting
 
@@ -140,9 +139,7 @@ Claude/GitHub; ask in Slack `#technical-help`.
 **Claude API key not working** — confirm you copied the whole key with no
 spaces and that it's active in the Anthropic console.
 
-**Claude API calls failing on Mace network** —  is blocked. Ensure both  and  are set in your  and loaded in your shell ( then  on bash/zsh, or set them in PowerShell directly).
-
-**Claude API calls failing on Mace network** — `api.anthropic.com` is blocked. Make sure both `ANTHROPIC_BASE_URL=https://api.stephen8n.com` and `ANTHROPIC_API_KEY=...` are set in your `.env` and active in your shell.
+**Claude API calls failing on Mace network** — `api.anthropic.com` is blocked on Mace's network. Make sure both `ANTHROPIC_BASE_URL=https://api.stephen8n.com` and `ANTHROPIC_API_KEY=...` are set in PowerShell before running `claude`.
 
 **Python dependencies won't install** — use Python 3.11+ and upgrade pip:
 `pip install --upgrade pip`.
