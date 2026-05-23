@@ -42,6 +42,8 @@ The site will prompt you for these; create them first if you don't have them:
 
 ### Claude API key
 
+⚠️ **Do this before the hackathon day, on home Wi-Fi or your phone hotspot** — `console.anthropic.com` is blocked on the Mace network.
+
 1. Go to https://console.anthropic.com/ → **API Keys**.
 2. **Create Key**, name it `MAICE Hackathon`.
 3. Copy it somewhere safe — you'll put it in your `.env` (Step 4).
