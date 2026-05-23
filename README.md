@@ -46,54 +46,6 @@ points:
 Use the worked example as a template — replace its filename/structure
 rules with whatever pattern matters to *your* team.
 
-## 🗂️ Example: HR document validator
-
-Not a BIM team? Here's how the same approach works for HR — use this as a template for any department.
-
-### Step 1 — define your naming pattern
-
-HR documents at Mace might follow a pattern like:
-
-```
-HR-<TYPE>-<DEPARTMENT>-<NUMBER>_<REVISION>
-```
-
-For example:
-- `HR-POL-ALL-001_v2.docx` — company-wide policy, revision 2 ✅
-- `HR-JD-ENG-042_v1.pdf` — engineering job description ✅
-- `Job Description Engineer Final FINAL.docx` — ❌ fails
-
-Types: `POL` (policy), `JD` (job description), `PER` (performance review), `CON` (contract), `TRN` (training record)
-
-### Step 2 — define your content rules (Silver)
-
-What should an HR policy document always contain?
-- A version number and effective date
-- An owner / responsible person
-- A review date
-- A scope section
-- Sign-off / approval
-
-### Step 3 — prompt Claude
-
-Paste this into the `claude` terminal:
-
-> Implement Bronze-level naming validation for HR documents. The pattern is `HR-<TYPE>-<DEPARTMENT>-<NUMBER>_<REVISION>` where TYPE is one of POL, JD, PER, CON, TRN. Write `src/validators/naming_validator.py`, wire it into `check_compliance.py`, and add unit tests under `tests/`. Create a passing fixture `examples/HR-POL-ALL-001_v1.docx` and a failing fixture `examples/Job Description Final FINAL.docx`.
-
-That's it. Claude will write the validator, wire it in, and write the tests. You just run them.
-
-### The pattern for any domain
-
-| Step | Question to answer | BIM example | HR example |
-|------|-------------------|-------------|------------|
-| 1 | What does a valid filename look like? | `PROJECT-ORIGINATOR-VOLUME-LEVEL-TYPE-ROLE-NUMBER_REVISION` | `HR-TYPE-DEPT-NUMBER_REVISION` |
-| 2 | What metadata must always be present? | Author, revision, classification | Owner, effective date, review date |
-| 3 | What must the content contain? | Exchange information requirements, delivery milestones | Scope, sign-off, version number |
-| 4 | What does a passing fixture look like? | `MAC-LIBDM-XX-00-DR-A-001_P01.pdf` | `HR-POL-ALL-001_v1.docx` |
-| 5 | What does a failing fixture look like? | `floor plan ground.pdf` | `Job Description Final FINAL.docx` |
-
-Answer those five questions for your document type, swap them into the prompt, and Claude does the rest.
-
 ## 🚀 Challenge Tasks
 
 Pick a domain (see above), then ladder through three tiers. Each tier is
