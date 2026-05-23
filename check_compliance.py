@@ -16,6 +16,8 @@ import click
 from rich.console import Console
 from rich.table import Table
 
+from src.validators import validate_naming
+
 load_dotenv()
 
 # Force UTF-8 output on Windows to avoid emoji/Rich encoding crashes
@@ -50,19 +52,21 @@ def check_compliance(document, format, strict, output):
     console.print(f"📄 Analyzing: [cyan]{doc_path.name}[/cyan]")
     console.print(f"📏 Size: {doc_path.stat().st_size / 1024:.2f} KB\n")
 
-    # TODO: Implement validation logic
-    console.print("[yellow]⚠️  This is a starter template[/yellow]")
-    console.print("[yellow]Implement validation logic in src/validators/[/yellow]\n")
+    naming_result = validate_naming(doc_path)
 
-    # Example output
     table = Table(title="Validation Results")
     table.add_column("Check", style="cyan")
     table.add_column("Status", style="green")
     table.add_column("Details", style="white")
 
-    table.add_row("File Naming", "✓ Pass", "Follows ISO 19650 convention")
-    table.add_row("Metadata", "✗ Fail", "Missing author information")
-    table.add_row("Structure", "⚠ Warning", "Some sections incomplete")
+    if naming_result.passed:
+        table.add_row("File Naming", "✓ Pass", naming_result.summary)
+    else:
+        details = "; ".join(naming_result.details) or naming_result.summary
+        table.add_row("File Naming", "✗ Fail", details)
+
+    table.add_row("Metadata", "… Not implemented", "Bronze metadata check pending")
+    table.add_row("Structure", "… Not implemented", "Silver content check pending")
 
     console.print(table)
     console.print("\n[bold green]Validation Complete![/bold green]\n")
