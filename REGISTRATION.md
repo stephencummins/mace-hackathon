@@ -28,11 +28,9 @@ Windows machine, install these **before Step 4**:
 3. **GitHub account** — https://github.com/signup (also in Step 2; required
    for the challenge code and submissions).
 4. **Claude CLI (Claude Code) for Windows** — the AI coding tool you build with:
-   - Install **Node.js 18+ LTS** first — https://nodejs.org/ (the CLI needs it).
-   - In PowerShell: `npm install -g @anthropic-ai/claude-code`
-   - Verify: `claude --version`. Run `claude` in the project folder and sign in
-     with your Anthropic account (Step 2). Current / native-installer docs:
+   - Download and run the native Windows installer (no Node.js required):
      https://docs.anthropic.com/en/docs/claude-code
+   - Verify: `claude --version`.
 
 ## 🧰 Step 2: Accounts you'll need
 
