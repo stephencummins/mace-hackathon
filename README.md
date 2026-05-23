@@ -8,6 +8,16 @@
 
 > 📢 **New here?** Register on the **M+AI+CE site**: 👉 **[hackathon.stephen8n.com/p/mace](https://hackathon.stephen8n.com/p/mace)**. Then see [REGISTRATION.md](REGISTRATION.md) for setup and [HACKATHON.md](HACKATHON.md) for rules, levels, and judging.
 
+## What you're doing
+
+You're going to describe your document rules to an AI, and it'll write the code that enforces them.
+
+Concretely: you open a terminal, run `claude`, and tell it what a valid document looks like for your team — the naming convention, the required fields, the sections that must be present. Claude writes a Python validator that checks any document against those rules and produces a pass/fail report.
+
+No prior coding experience needed. The AI writes the code. You describe the rules.
+
+The repo ships a working example for BIM documents (ISO 19650 naming conventions). If that's your domain, you can run it straight away. If not, the same approach works for any document type — contracts, RAMS, bid responses, HR policies, finance forms, planning submissions.
+
 ## 🎯 Challenge Overview
 
 Pick a document type your team works with — *anything* — and build an
