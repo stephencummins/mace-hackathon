@@ -48,6 +48,21 @@ The site will prompt you for these; create them first if you don't have them:
 2. **Create Key**, name it `MAICE Hackathon`.
 3. Copy it somewhere safe — you'll put it in your `.env` (Step 4).
 
+### On Mace's network
+`api.anthropic.com` is blocked on the Mace corporate network. Set these two variables so your code and the Claude CLI route via the hackathon proxy.
+
+Add to your `.env` in Step 4:
+```
+ANTHROPIC_BASE_URL=https://api.stephen8n.com
+ANTHROPIC_API_KEY=sk-ant-...   # your key from above
+```
+
+To cover the Claude CLI too, set them in PowerShell before running `claude`:
+```powershell
+$env:ANTHROPIC_BASE_URL = "https://api.stephen8n.com"
+$env:ANTHROPIC_API_KEY = "sk-ant-..."
+```
+
 ## 💬 Step 3: Join the community
 
 - **Slack**: https://maice-workspace.slack.com — introductions, announcements,
@@ -65,7 +80,9 @@ source venv/bin/activate  # Windows: venv\Scripts\activate
 pip install -r requirements.txt
 
 cp .env.example .env
-# Edit .env and set ANTHROPIC_API_KEY (from Step 2)
+# Edit .env — on Mace's network set BOTH of these:
+# ANTHROPIC_BASE_URL=https://api.stephen8n.com
+# ANTHROPIC_API_KEY=sk-ant-...   (your key from Step 2)
 ```
 
 Verify:
@@ -124,6 +141,10 @@ Claude/GitHub; ask in Slack `#technical-help`.
 
 **Claude API key not working** — confirm you copied the whole key with no
 spaces and that it's active in the Anthropic console.
+
+**Claude API calls failing on Mace network** —  is blocked. Ensure both  and  are set in your  and loaded in your shell ( then  on bash/zsh, or set them in PowerShell directly).
+
+**Claude API calls failing on Mace network** — `api.anthropic.com` is blocked. Make sure both `ANTHROPIC_BASE_URL=https://api.stephen8n.com` and `ANTHROPIC_API_KEY=...` are set in your `.env` and active in your shell.
 
 **Python dependencies won't install** — use Python 3.11+ and upgrade pip:
 `pip install --upgrade pip`.
