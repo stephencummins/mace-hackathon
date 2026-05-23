@@ -54,6 +54,12 @@ Mace's network filters block `api.anthropic.com` directly. The hackathon provide
 **Do I need to create my API key on the Mace network?**
 No — and you can't. The Anthropic console (`console.anthropic.com`) is also blocked. Create your account and API key before the hackathon day, on home Wi-Fi or a phone hotspot. It takes two minutes and you only do it once.
 
+**Should I use a personal or Mace GitHub account?**
+For the hackathon, use a personal GitHub account. The challenge repo is public and no sensitive Mace code or data is being committed, so there's no need to involve IT. If you don't have one, create a free account at github.com — you can register with your personal or Mace email address.
+
+**What if Mace adopts GitHub more formally after the hackathon?**
+If the hackathon generates appetite for AI-assisted development at Mace, the natural next step is a GitHub Enterprise organisation tied to Mace's Azure Active Directory / Entra ID. That gives IT central control — staff sign in with their `@macegroup.com` credentials, access is managed automatically when people join or leave, and private repos stay within the organisation. For now though, personal accounts get you through the day without any IT dependency.
+
 ---
 
 ## Security
