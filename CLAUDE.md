@@ -82,7 +82,7 @@ mace-hackathon/
 When implementing validators, check for:
 
 ### File Naming Convention
-Pattern: `PROJECT-ORIGINATOR-VOLUME-LEVEL-TYPE-ROLE-CLASSIFICATION-NUMBER_REVISION`
+Pattern: `PROJECT-ORIGINATOR-VOLUME-LEVEL-TYPE-ROLE-NUMBER_REVISION`
 
 ### Required Metadata
 - Author information
