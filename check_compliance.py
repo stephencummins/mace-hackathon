@@ -18,7 +18,12 @@ from rich.table import Table
 
 load_dotenv()
 
-console = Console()
+# Force UTF-8 output on Windows to avoid emoji/Rich encoding crashes
+if sys.platform == 'win32':
+    sys.stdout.reconfigure(encoding='utf-8', errors='replace')
+    sys.stderr.reconfigure(encoding='utf-8', errors='replace')
+
+console = Console(force_terminal=True)
 
 
 @click.command()
