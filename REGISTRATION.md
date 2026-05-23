@@ -112,19 +112,15 @@ python check_compliance.py examples/MAC-LIBDM-XX-00-DR-A-001_P01.pdf
 claude
 ```
 
-Then ask Claude to scaffold Bronze. A good starter prompt to paste:
+Then paste one of these prompts into the Claude terminal:
 
-> Implement Bronze-level validation for **my chosen domain**: <name the
-> document type your team works with — BIM, quality manual, bid response,
-> RAMS, contract, finance document, HR policy, planning submission, etc.>
-> Define the naming / reference pattern that's valid for it, then write
-> `src/validators/naming_validator.py` to check a filename against that
-> pattern. Wire it into `check_compliance.py` so the result appears in the
-> validation table. Add a unit test under `tests/`.
->
-> *Worked example to copy if you want: BIM / ISO 19650 — pattern
-> `PROJECT-ORIGINATOR-VOLUME-LEVEL-TYPE-ROLE-CLASSIFICATION-NUMBER_REVISION`,
-> fixtures in `examples/`.*
+**Option A — BIM / ISO 19650 worked example (copy exactly):**
+
+> Implement Bronze-level naming validation for BIM / ISO 19650 documents. The pattern is `PROJECT-ORIGINATOR-VOLUME-LEVEL-TYPE-ROLE-CLASSIFICATION-NUMBER_REVISION`. Write `src/validators/naming_validator.py`, wire it into `check_compliance.py`, and add a unit test under `tests/`. Use `examples/MAC-LIBDM-XX-00-DR-A-001_P01.pdf` as the passing fixture and `examples/floor plan ground.pdf` as the failing one.
+
+**Option B — your own document type (fill in the blanks):**
+
+> Implement Bronze-level naming validation for **[your document type]** documents. The valid naming pattern is **[describe your pattern]**. Write `src/validators/naming_validator.py`, wire it into `check_compliance.py`, and add a unit test under `tests/`. Create a passing fixture called `examples/valid_example.[ext]` and a failing one called `examples/invalid_example.[ext]`.
 
 Iterate until your own compliant/non‑compliant fixtures behave correctly
 (or, for the BIM worked example, until
