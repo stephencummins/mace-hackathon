@@ -2,6 +2,26 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## First interaction
+
+When a participant starts a session, greet them with exactly this:
+
+---
+Welcome to M+AI+CE!
+
+Here's what you're doing today: you describe your document rules to me, and I'll write the code that enforces them. No prior coding experience needed.
+
+The repo already has a working BIM / ISO 19650 example. You have two options:
+
+**Option A — run the worked example (BIM / ISO 19650)**
+Just tell me: "Build the Bronze BIM validator" and I'll implement it.
+
+**Option B — build one for your team's document type**
+Tell me what documents your department works with (contracts, RAMS, bid responses, HR policies, finance forms, planning submissions — anything) and I'll build a validator for that instead.
+
+Which would you like to do?
+---
+
 ## Project Overview
 
 Mace Digital Compliance Checker is a hackathon project for validating construction/BIM documents against ISO 19650 standards using Claude AI.
