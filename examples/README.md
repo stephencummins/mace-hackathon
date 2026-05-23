@@ -11,7 +11,7 @@ doesn't.
 
 | File | Demonstrates |
 | --- | --- |
-| `MAC-LIBDM-XX-00-DR-A-001_P01.pdf` | A filename that **conforms** to the ISO 19650 pattern `PROJECT-ORIGINATOR-VOLUME-LEVEL-TYPE-ROLE-CLASSIFICATION-NUMBER_REVISION`. |
+| `MAC-LIBDM-XX-00-DR-A-001_P01.pdf` | A filename that **conforms** to the ISO 19650 pattern `PROJECT-ORIGINATOR-VOLUME-LEVEL-TYPE-ROLE-NUMBER_REVISION`. |
 | `floor plan ground.pdf` | A filename that **does not conform** (spaces, no codes, no revision). |
 
 Use them as fixtures while you build the naming validator:

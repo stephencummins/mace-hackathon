@@ -93,7 +93,7 @@ for your document type.
 - [ ] What revision / audit trail is required?
 
 > **BIM / ISO 19650 worked example:** filename codes
-> `PROJECT-ORIGINATOR-VOLUME-LEVEL-TYPE-ROLE-CLASSIFICATION-NUMBER_REVISION`;
+> `PROJECT-ORIGINATOR-VOLUME-LEVEL-TYPE-ROLE-NUMBER_REVISION`;
 > metadata fields *author, creation date, approval status, information
 > container, security classification*; structure expectations *title block,
 > revision history, required sections, appropriate level of information
