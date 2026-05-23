@@ -58,8 +58,10 @@ ANTHROPIC_API_KEY=sk-ant-...   # your key from above
 To cover the Claude CLI too, set them in PowerShell before running `claude`:
 ```powershell
 $env:ANTHROPIC_BASE_URL = "https://api.stephen8n.com"
-$env:ANTHROPIC_API_KEY = "sk-ant-..."
+$env:ANTHROPIC_API_KEY = "sk-ant-..."   # paste your key from Step 2
 ```
+
+Then run `claude` — you should be connected without needing to authenticate via a browser.
 
 ## 💬 Step 3: Join the community
 
