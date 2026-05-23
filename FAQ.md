@@ -1,0 +1,102 @@
+# M+AI+CE Hackathon — FAQ
+
+## General
+
+**What is M+AI+CE?**
+M+AI+CE is a Mace hackathon where teams build AI-powered document validators using Anthropic's Claude API. Participants pick a document type their department works with — quality manuals, RAMS, bid responses, contracts, BIM files, HR policy, finance reports — and build a tool that checks documents automatically against the rules that matter for that document type.
+
+**Who can participate?**
+Anyone at Mace. No prior AI or coding experience is required — the Claude CLI means you can build a working tool by describing what you want in plain English.
+
+**What do I actually build?**
+A Python command-line tool that takes a document as input and produces a structured validation report. Three tiers of increasing complexity:
+- **Bronze** — structural checks: naming conventions, required fields, file metadata (no AI involved)
+- **Silver** — AI content analysis: Claude reads the document and checks whether the content meets defined rules
+- **Gold** — a full validation suite: batch processing, a dashboard, auto-correction suggestions
+
+**Do I need to be a developer?**
+No. The Claude CLI lets you describe what you want and it writes the code. Bronze to Silver is achievable in a day with no prior coding experience.
+
+**Can I work in a team?**
+Yes. Form a team on the hackathon dashboard at hackathon.stephen8n.com/p/mace. One person per team sets up the Anthropic account and shares the API key with teammates.
+
+**How are submissions judged?**
+- Functionality — 40%
+- Innovation — 30%
+- Code quality — 20%
+- Presentation — 10%
+
+**Where do I go if something isn't working?**
+Slack `#technical-help` at maice-workspace.slack.com.
+
+---
+
+## Technical
+
+**What do I need to install?**
+Three things, none of which require admin rights:
+1. Python 3.11+ — python.org/downloads/windows
+2. Git for Windows — git-scm.com/download/win
+3. Claude CLI — docs.anthropic.com/en/docs/claude-code (native installer, no Node.js needed)
+
+**What is the Claude CLI?**
+Claude Code is Anthropic's AI coding assistant. You run it in a terminal inside your project folder and describe what you want to build. It reads your code, writes new code, runs tests, and iterates — like pair programming with an AI.
+
+**What is an Anthropic API key?**
+A personal credential that lets your code call Claude. Each participant creates their own free account at console.anthropic.com and generates a key. New accounts include free credits sufficient for the hackathon.
+
+**Why do I need my own Anthropic account rather than a shared one?**
+Anthropic's terms require each key to correspond to an individual account. Using separate accounts also means each participant's usage is isolated — one person's activity can't affect another's.
+
+**Why do I set `ANTHROPIC_BASE_URL` to `api.stephen8n.com`?**
+Mace's network filters block `api.anthropic.com` directly. The hackathon provides a pass-through proxy at `api.stephen8n.com` that routes API calls to Anthropic on your behalf. See the Security section below for what this does and doesn't do.
+
+**Do I need to create my API key on the Mace network?**
+No — and you can't. The Anthropic console (`console.anthropic.com`) is also blocked. Create your account and API key before the hackathon day, on home Wi-Fi or a phone hotspot. It takes two minutes and you only do it once.
+
+---
+
+## Security
+
+**What data leaves the Mace network during the hackathon?**
+When you run the validator against a document, the document content is sent to Anthropic's API over HTTPS. No document content is stored on the hackathon platform (hackathon.stephen8n.com) — it only records your name, progress through the setup steps, and team membership.
+
+**Who can see our API calls?**
+Anthropic receives the content of each API request under their standard API terms. The hackathon proxy (`api.stephen8n.com`) is a pass-through — it forwards requests without logging or storing request bodies. Stephen Cummins operates the proxy and can see request metadata (timestamp, size, response code) in Cloudflare logs, but not the content of documents.
+
+**Does Anthropic use our documents to train its models?**
+No. Anthropic's API terms explicitly state that inputs and outputs via the API are not used to train models. This is a key difference from consumer products (claude.ai) where usage may inform training. The API is designed for business use and carries stronger data handling commitments. See: anthropic.com/legal/privacy
+
+**Should we use sensitive or confidential documents?**
+For the hackathon, use test documents or publicly available examples wherever possible. The worked example in the repo uses BIM document naming conventions with no project-sensitive content. If your team's chosen document type involves confidential data, build the validator using anonymised or synthetic examples — the validator logic is what's being judged, not the real documents.
+
+**Is the hackathon platform itself secure?**
+Yes. hackathon.stephen8n.com is:
+- Served over HTTPS via Cloudflare
+- Authentication via Google SSO — no passwords stored
+- Hosted on infrastructure already used for other Mace-adjacent tools
+
+**Who is responsible for API costs?**
+Each participant's API key is billed to their own Anthropic account. New accounts include free credits that comfortably cover a day's hackathon use. There is no shared billing that could expose Mace to unexpected costs.
+
+**Is this compliant with Mace's data policies?**
+The hackathon is designed to avoid handling production or sensitive data. Participants are advised to use test documents only. If your team has questions about a specific document type, raise them in Slack `#technical-help` before the event.
+
+**Does this comply with Anthropic's Terms of Service?**
+Yes. Each participant operates their own account under Anthropic's standard API (Commercial) Terms of Service. The proxy is a transparent pass-through and does not circumvent billing, resell access, or share credentials — all of which are prohibited. Using a reverse proxy for network routing is standard practice and explicitly supported by Anthropic (the `ANTHROPIC_BASE_URL` environment variable exists for exactly this purpose).
+
+---
+
+## On the day
+
+**What's the rough schedule?**
+Timings will be posted in Slack `#announcements`. Budget: ~30 min setup, then building all day, presentations in the afternoon.
+
+**What if my API key stops working?**
+Check it's active in the Anthropic console (on your phone or home network). Free-tier credits should be more than sufficient for a day's use — if you're hitting limits, raise it in `#technical-help`.
+
+**What if I can't clone the repo?**
+Check `github.com` is reachable on the Mace network (`curl -I https://github.com` in PowerShell). If it's blocked, ask in `#technical-help` — we have a fallback.
+
+**Questions not covered here?**
+Ask in Slack `#technical-help` or `#registration`.
