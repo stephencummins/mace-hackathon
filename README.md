@@ -52,6 +52,7 @@ Pick a domain (see above), then ladder through three tiers. Each tier is
 described generically — substitute the specifics of *your* document type.
 
 ### 🥉 Bronze Level: Structural Validation
+**No AI required. Pure pattern matching — everyone can ship this in the first hour.**
 Build a validator that checks the *shape* of a document:
 - [ ] File naming / reference pattern (your domain's convention — e.g. an ISO 19650 code, a contract id like `MSA-<client>-<rev>`, an SOP number like `QMS-001-A`)
 - [ ] Required metadata fields (author, dates, version, classification — whatever your domain mandates)
@@ -59,6 +60,7 @@ Build a validator that checks the *shape* of a document:
 - [ ] Basic format requirements (file type, page size, etc. if relevant)
 
 ### 🥈 Silver Level: AI-Powered Content Analysis
+**This is where Claude reads the document and checks whether the content actually complies.**
 Enhance with Claude to check the *substance*:
 - [ ] Read the document with Claude and verify it contains what your domain requires
 - [ ] Check for missing mandatory clauses / sections / data
@@ -66,6 +68,7 @@ Enhance with Claude to check the *substance*:
 - [ ] Validate internal consistency (dates align, references resolve, totals add up)
 
 ### 🥇 Gold Level: Full Validation Suite
+**A complete, deployable product your team could actually use.**
 Create a production-grade tool:
 - [ ] Multi-document batch validation
 - [ ] Reporting dashboard
