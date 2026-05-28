@@ -10,6 +10,15 @@ Usage:
 
 import sys
 import os
+
+# Use the OS cert store so Python trusts corporate TLS-intercepting proxies
+# (e.g. Mace's network). Must run before any HTTPS client is constructed.
+try:
+    import truststore
+    truststore.inject_into_ssl()
+except ImportError:
+    pass
+
 from pathlib import Path
 from dotenv import load_dotenv
 import click

@@ -1,6 +1,7 @@
 # Core dependencies
 anthropic>=0.39.0
 python-dotenv>=1.0.0
+truststore>=0.10  # Use OS cert store so corporate TLS-intercepting proxies work
 
 # Document processing
 pypdf>=3.17.0

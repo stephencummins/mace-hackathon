@@ -54,6 +54,9 @@ Mace's network filters block `api.anthropic.com` directly. The hackathon provide
 **Do I need to create my API key on the Mace network?**
 No — and you can't. The Anthropic console (`console.anthropic.com`) is also blocked. Create your account and API key before the hackathon day, on home Wi-Fi or a phone hotspot. It takes two minutes and you only do it once.
 
+**I'm getting `SSL: CERTIFICATE_VERIFY_FAILED` errors when running the validator on the Mace network. What's going on?**
+Mace's network intercepts HTTPS traffic with a self-signed corporate certificate. Windows tools (PowerShell, browsers, the Claude CLI) trust this certificate via the system cert store, but Python's bundled `certifi` does not. The `truststore` package in `requirements.txt` patches Python's SSL module to use the OS cert store, which resolves the error. `check_compliance.py` calls `truststore.inject_into_ssl()` at startup automatically — if you write standalone scripts that talk to the API, do the same near the top of the file (before any HTTPS client is constructed).
+
 **Should I use a personal or Mace GitHub account?**
 For the hackathon, use a personal GitHub account. The challenge repo is public and no sensitive Mace code or data is being committed, so there's no need to involve IT. If you don't have one, create a free account at github.com — you can register with your personal or Mace email address.
 
