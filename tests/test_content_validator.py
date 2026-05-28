@@ -25,8 +25,17 @@ def _fake_result(status: str = "warning") -> ContentValidationResult:
         overall_status=status,
         summary="A placeholder document with minimal content.",
         findings=[
-            ContentFinding(check="Author / originator", status="fail", detail="No author block."),
-            ContentFinding(check="Title block present", status="warning", detail="Inferred from filename only."),
+            ContentFinding(
+                check="Author / originator",
+                status="fail",
+                detail="No author block.",
+                suggested_fix="Add an 'Author' field to the title block.",
+            ),
+            ContentFinding(
+                check="Title block present",
+                status="warning",
+                detail="Inferred from filename only.",
+            ),
         ],
     )
 
@@ -97,3 +106,27 @@ def test_propagates_api_error():
     )
     with pytest.raises(anthropic.APIError):
         validate_content(PDF_FIXTURE, client=client)
+
+
+def test_suggested_fix_optional_and_round_trips():
+    # default None for pass findings
+    pass_finding = ContentFinding(check="Title block present", status="pass", detail="Present")
+    assert pass_finding.suggested_fix is None
+
+    # populated for fail/warning
+    fix = "Add an 'Author' field to the title block."
+    fail_finding = ContentFinding(
+        check="Author / originator",
+        status="fail",
+        detail="No author block.",
+        suggested_fix=fix,
+    )
+    assert fail_finding.suggested_fix == fix
+    assert fail_finding.model_dump()["suggested_fix"] == fix
+
+
+def test_rubric_instructs_claude_to_provide_fixes():
+    # Regression: the rubric file must explain when/how to populate suggested_fix
+    rubric = (Path(__file__).resolve().parents[1] / "src" / "validators" / "iso_19650_rubric.md").read_text(encoding="utf-8")
+    assert "suggested_fix" in rubric
+    assert "fail" in rubric.lower() and "warning" in rubric.lower()

@@ -65,6 +65,12 @@ def _render_one(report: DocReport, console: Console) -> None:
                 _symbol(finding.status),
                 finding.detail,
             )
+            if finding.suggested_fix:
+                table.add_row(
+                    "      [green]↳ Fix[/green]",
+                    "",
+                    f"[green]{finding.suggested_fix}[/green]",
+                )
 
     console.print(table)
 

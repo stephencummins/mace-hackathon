@@ -66,3 +66,30 @@ if present but ambiguous or incomplete.
 - Do NOT speculate. If a criterion cannot be assessed from the document (e.g.
   scanned image with unreadable text), return `warning` with detail
   "Insufficient evidence to assess".
+
+## Suggested fixes
+
+For every finding where `status` is `fail` or `warning`, populate
+`suggested_fix` with a concrete, actionable remediation the document author
+could apply. For `pass` findings, omit `suggested_fix` (leave it null).
+
+Good fixes:
+
+- Start with an imperative verb ("Add", "Replace", "Insert", "Rename")
+- Name the specific field, section, or location to change
+- One short sentence — no preamble, no hedging
+- Concrete enough that a non-expert could act on it without further research
+
+Examples:
+
+- Author missing → "Add an 'Author' field to the title block listing the
+  originating organisation (e.g. 'Mace Group')."
+- No revision history → "Insert a revision history table near the front of
+  the document with one row per revision: revision code, date (YYYY-MM-DD),
+  and a brief change description."
+- Suitability code absent → "Add the suitability code (e.g. 'S2 — Suitable
+  for information') to the title block, matching the status code in the
+  revision."
+- Insufficient evidence (scanned PDF) → "Re-issue the document with
+  searchable text, either by exporting from the source application or by
+  applying OCR before issue."

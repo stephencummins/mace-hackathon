@@ -23,6 +23,13 @@ class ContentFinding(BaseModel):
     check: str = Field(description="The criterion being assessed (use the rubric heading text)")
     status: Literal["pass", "fail", "warning"]
     detail: str = Field(description="One- to two-sentence justification citing document evidence")
+    suggested_fix: Optional[str] = Field(
+        default=None,
+        description=(
+            "Concrete remediation when status is 'fail' or 'warning'. "
+            "Omit (null) for 'pass' findings."
+        ),
+    )
 
 
 class ContentValidationResult(BaseModel):

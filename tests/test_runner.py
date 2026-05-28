@@ -25,7 +25,12 @@ def _fake_content_result() -> ContentValidationResult:
         overall_status="warning",
         summary="Placeholder document.",
         findings=[
-            ContentFinding(check="Author / originator", status="fail", detail="No author."),
+            ContentFinding(
+                check="Author / originator",
+                status="fail",
+                detail="No author.",
+                suggested_fix="Add an 'Author' field to the title block.",
+            ),
         ],
     )
 
@@ -107,5 +112,7 @@ def test_doc_report_to_json_dict_roundtrip():
     assert blob["naming"]["passed"] is True
     assert blob["content"]["overall_status"] == "warning"
     assert blob["content_error"] is None
+    # suggested_fix flows through serialization
+    assert blob["content"]["findings"][0]["suggested_fix"] == "Add an 'Author' field to the title block."
     import json
     assert json.dumps(blob)  # serializable
