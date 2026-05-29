@@ -30,6 +30,7 @@ Mace Digital Compliance Checker is a hackathon project for validating constructi
 - **Bronze**: Basic file naming and metadata validation
 - **Silver**: AI-powered content analysis with Claude
 - **Gold**: Full compliance suite with batch processing, dashboard, and API
+- **Platinum**: Operational readiness — cost analysis, caching strategy, governance model, and service management documentation
 
 **Context:**
 - This is the **Mace** instance of the M+AI+CE hackathon — the first concrete

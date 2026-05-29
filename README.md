@@ -21,9 +21,9 @@ The repo ships a working example for BIM documents (ISO 19650 naming conventions
 ## 🎯 Challenge Overview
 
 Pick a document type your team works with — *anything* — and build an
-AI‑powered validator with Claude. The **Bronze → Silver → Gold** structure
-below applies regardless of domain: you bring the rules, Claude helps you
-enforce them at scale.
+AI‑powered validator with Claude. The **Bronze → Silver → Gold → Platinum**
+structure below applies regardless of domain: you bring the rules, Claude
+helps you enforce them at scale.
 
 ## 🏗️ Worked example: ISO 19650 (BIM)
 
@@ -85,6 +85,15 @@ Create a production-grade tool:
 - [ ] Auto-correction / improvement suggestions
 - [ ] Integration with where your team's docs live (SharePoint, document libraries, ticketing, etc.)
 - [ ] Real-time validation API
+
+### 💎 Platinum Level: Operational Readiness
+**Beyond shipping — thinking about the full lifecycle.**
+Document how this tool lives in a real organisation:
+- [ ] **Operations & maintenance**: Deployment model, update/versioning process, dependency management, and clear ownership after the hackathon
+- [ ] **Cost analysis**: Token usage per document type, cost projections at realistic monthly volumes, ROI versus manual review
+- [ ] **Caching strategy**: Implement document fingerprinting (skip re-validation of unchanged docs), result caching, and Anthropic prompt caching headers — demonstrate measurable token savings
+- [ ] **Governance**: Defined ownership model, access control policy, audit trail for validation decisions, approval workflow for rule changes, false-positive escalation path
+- [ ] **Service management**: Support runbook, SLA (uptime, latency, accuracy targets), user onboarding guide, process for adding a new document type, changelog/release notes process
 
 ## 📋 Requirements Checklist
 

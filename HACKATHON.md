@@ -28,7 +28,7 @@ Sign in with your Google account. That's your registration — no form to fill i
 
 Full setup walkthrough: [REGISTRATION.md](REGISTRATION.md)
 
-## The three levels
+## The four levels
 
 ### 🥉 Bronze — does the document *look* right?
 **No AI involved. Pure pattern matching — everyone can get here in the first hour.**
@@ -44,6 +44,17 @@ Claude opens the document and checks whether it actually contains what it should
 **A complete, deployable product.**
 
 Batch checking across multiple documents, a results dashboard, suggested corrections, integration with SharePoint or your document library.
+
+### 💎 Platinum — a solution your organisation can own
+**Beyond shipping — thinking about the full lifecycle.**
+
+You've built the tool. Now document how it lives in the real world:
+
+- **Operations & maintenance**: Deployment model, update process, dependency management — and who owns it after the hackathon.
+- **Cost management**: Analyse token usage per document type and scenario. What does validation cost at realistic monthly volumes? What's the ROI versus manual review?
+- **Caching strategy**: Reduce redundant API calls — document fingerprinting to skip re-validation, result caching, Anthropic prompt caching headers. Show measurable token savings.
+- **Governance**: Who approves changes to the validation rules? Who has access to the tool and its outputs? How are false positives handled and escalated? What's the audit trail?
+- **Service management**: A support runbook, a defined SLA (uptime, latency, accuracy targets), onboarding documentation for new users and new document types, and a changelog process.
 
 ## How judging works
 
