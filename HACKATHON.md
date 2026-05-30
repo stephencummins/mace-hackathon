@@ -51,6 +51,7 @@ Batch checking across multiple documents, a results dashboard, suggested correct
 You've built the tool. Now document how it lives in the real world:
 
 - **Operations & maintenance**: Deployment model, update process, dependency management — and who owns it after the hackathon.
+- **Inference economics**: Choose the right model for each task — Haiku for structural/deterministic checks, Sonnet where deep reasoning is needed. Optimise prompt length, minimise output tokens, and batch calls where possible. Understand Anthropic's cost model: input vs output pricing, cache write vs cache read rates.
 - **Cost management**: Analyse token usage per document type and scenario. What does validation cost at realistic monthly volumes? What's the ROI versus manual review?
 - **Caching strategy**: Reduce redundant API calls — document fingerprinting to skip re-validation, result caching, Anthropic prompt caching headers. Show measurable token savings.
 - **Governance**: Who approves changes to the validation rules? Who has access to the tool and its outputs? How are false positives handled and escalated? What's the audit trail?

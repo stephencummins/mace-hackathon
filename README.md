@@ -90,6 +90,7 @@ Create a production-grade tool:
 **Beyond shipping — thinking about the full lifecycle.**
 Document how this tool lives in a real organisation:
 - [ ] **Operations & maintenance**: Deployment model, update/versioning process, dependency management, and clear ownership after the hackathon
+- [ ] **Inference economics**: Model tiering (Haiku for structural checks, Sonnet for deep analysis), prompt length optimisation, output token minimisation, request batching; understand Anthropic's input/output and cache write/read pricing
 - [ ] **Cost analysis**: Token usage per document type, cost projections at realistic monthly volumes, ROI versus manual review
 - [ ] **Caching strategy**: Implement document fingerprinting (skip re-validation of unchanged docs), result caching, and Anthropic prompt caching headers — demonstrate measurable token savings
 - [ ] **Governance**: Defined ownership model, access control policy, audit trail for validation decisions, approval workflow for rule changes, false-positive escalation path
