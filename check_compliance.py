@@ -57,7 +57,15 @@ _DEFAULT_OUTPUT = {"html": "compliance-report.html", "json": "compliance-report.
     help="Write the report to a file. Defaults to compliance-report.<ext> for html/json.",
 )
 @click.option("--strict", is_flag=True, help="Enable strict validation mode (reserved)")
-def check_compliance(document: Path, fmt: str, output: Path | None, strict: bool) -> None:
+@click.option(
+    "--no-cache",
+    "no_cache",
+    is_flag=True,
+    help="Skip the document-level result cache (force a fresh Claude call).",
+)
+def check_compliance(
+    document: Path, fmt: str, output: Path | None, strict: bool, no_cache: bool
+) -> None:
     """Validate one document or a folder of documents against ISO 19650.
 
     DOCUMENT: Path to a PDF, or a directory to scan recursively for PDFs.
@@ -72,7 +80,9 @@ def check_compliance(document: Path, fmt: str, output: Path | None, strict: bool
         console.print("[dim]ISO 19650 Validation Tool[/dim]")
         console.print(f"[dim]Scanning {len(paths)} document(s)...[/dim]")
 
-    reports = validate_documents(paths, progress=(fmt == "console"))
+    reports = validate_documents(
+        paths, progress=(fmt == "console"), use_cache=not no_cache
+    )
 
     if fmt == "console":
         render_console(reports, console)

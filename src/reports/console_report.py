@@ -54,8 +54,9 @@ def _render_one(report: DocReport, console: Console) -> None:
             "ANTHROPIC_API_KEY not set — set it in .env to enable Silver checks",
         )
     else:
+        cache_suffix = " [magenta](cached)[/magenta]" if report.from_cache else ""
         table.add_row(
-            f"Content Review (AI) — {report.content.overall_status.upper()}",
+            f"Content Review (AI) — {report.content.overall_status.upper()}{cache_suffix}",
             _symbol(report.content.overall_status),
             report.content.summary,
         )
@@ -78,6 +79,9 @@ def _render_one(report: DocReport, console: Console) -> None:
 def _render_summary(reports: list[DocReport], console: Console) -> None:
     counts: Counter[str] = Counter()
     naming_fails = 0
+    cache_hits = 0
+    saved_input = 0
+    saved_output = 0
     for report in reports:
         if report.content_error:
             counts["error"] += 1
@@ -87,6 +91,11 @@ def _render_summary(reports: list[DocReport], console: Console) -> None:
             counts[report.content.overall_status] += 1
         if not report.naming.passed:
             naming_fails += 1
+        if report.from_cache:
+            cache_hits += 1
+            usage = report.cached_usage or {}
+            saved_input += int(usage.get("input_tokens") or 0)
+            saved_output += int(usage.get("output_tokens") or 0)
 
     table = Table(title="Batch Summary", show_header=True, header_style="bold")
     table.add_column("Count", justify="right")
@@ -97,5 +106,8 @@ def _render_summary(reports: list[DocReport], console: Console) -> None:
             table.add_row(str(counts[key]), f"Content review: {key}")
     if naming_fails:
         table.add_row(str(naming_fails), "Naming non-conformant")
+    if cache_hits:
+        saved = f"{saved_input:,} input + {saved_output:,} output tokens saved"
+        table.add_row(str(cache_hits), f"From cache ({saved})")
     console.print()
     console.print(table)

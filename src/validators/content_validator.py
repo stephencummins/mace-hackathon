@@ -38,30 +38,21 @@ class ContentValidationResult(BaseModel):
     findings: list[ContentFinding]
 
 
-def validate_content(
+def resolve_model(explicit: Optional[str] = None) -> str:
+    """Resolve the model id from (in order) explicit arg, CLAUDE_MODEL env, default."""
+    return explicit or os.getenv("CLAUDE_MODEL") or DEFAULT_MODEL
+
+
+def call_claude(
     path: str | Path,
-    *,
-    client: Optional[anthropic.Anthropic] = None,
-    model: Optional[str] = None,
-) -> Optional[ContentValidationResult]:
-    """Validate document content against the ISO 19650 rubric using Claude.
+    client: anthropic.Anthropic,
+    model: str,
+) -> tuple[ContentValidationResult, dict]:
+    """Make the Anthropic call and return (parsed_result, usage_dict).
 
-    Returns:
-        ContentValidationResult on success.
-        None when no API key is set and no client is supplied — callers
-        should render this as a 'skipped' row in their report.
-
-    Raises:
-        anthropic.APIError (and subclasses) on API failure. Callers wrap in
-        try/except to render API errors as a row in their report.
+    Public so the runner can call it directly when it wants the usage block
+    for cache accounting; ``validate_content`` is the simpler facade.
     """
-    if client is None:
-        if not os.getenv("ANTHROPIC_API_KEY"):
-            return None
-        client = anthropic.Anthropic()
-
-    model = model or os.getenv("CLAUDE_MODEL") or DEFAULT_MODEL
-
     pdf_bytes = Path(path).read_bytes()
     pdf_b64 = base64.standard_b64encode(pdf_bytes).decode("ascii")
 
@@ -101,4 +92,31 @@ def validate_content(
         output_format=ContentValidationResult,
     )
 
-    return response.parsed_output
+    usage = response.usage.model_dump() if hasattr(response.usage, "model_dump") else dict(response.usage)
+    return response.parsed_output, usage
+
+
+def validate_content(
+    path: str | Path,
+    *,
+    client: Optional[anthropic.Anthropic] = None,
+    model: Optional[str] = None,
+) -> Optional[ContentValidationResult]:
+    """Validate document content against the ISO 19650 rubric using Claude.
+
+    Returns:
+        ContentValidationResult on success.
+        None when no API key is set and no client is supplied — callers
+        should render this as a 'skipped' row in their report.
+
+    Raises:
+        anthropic.APIError (and subclasses) on API failure. Callers wrap in
+        try/except to render API errors as a row in their report.
+    """
+    if client is None:
+        if not os.getenv("ANTHROPIC_API_KEY"):
+            return None
+        client = anthropic.Anthropic()
+
+    result, _usage = call_claude(path, client, resolve_model(model))
+    return result

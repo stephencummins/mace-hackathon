@@ -54,3 +54,10 @@ logs/
 
 # Claude Code
 .claude/
+
+# Document validation cache (Platinum PR 1)
+.cache/
+
+# Generated compliance reports (Gold PR 1 default output path)
+compliance-report.html
+compliance-report.json

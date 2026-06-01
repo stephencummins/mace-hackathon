@@ -86,11 +86,13 @@ def healthz() -> dict:
 
 
 @app.post("/validate", dependencies=[Depends(require_token)])
-def validate(file: UploadFile) -> dict:
+def validate(file: UploadFile, no_cache: bool = False) -> dict:
     """Validate one PDF against ISO 19650.
 
     Accepts a single PDF via ``multipart/form-data``. Returns the same JSON
     structure the CLI emits with ``--format json`` for one document.
+
+    Pass ``?no_cache=true`` to skip the document-level cache for this request.
     """
     # Preserve the uploaded basename so the naming validator sees the real
     # filename, not the temp name. Path().name strips any path components.
@@ -98,5 +100,5 @@ def validate(file: UploadFile) -> dict:
     with tempfile.TemporaryDirectory() as tmpdir:
         target = Path(tmpdir) / safe_name
         target.write_bytes(file.file.read())
-        [report] = validate_documents([target], progress=False)
+        [report] = validate_documents([target], progress=False, use_cache=not no_cache)
         return report.to_json_dict()
