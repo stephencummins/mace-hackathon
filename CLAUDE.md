@@ -85,6 +85,7 @@ trees below are what participants build out.
 mace-hackathon/
 ├── check_compliance.py      # Main CLI entry point
 ├── src/
+│   ├── runner.py            # Batch validation (Gold PR 1)
 │   ├── validators/          # Validation logic
 │   │   ├── naming_validator.py
 │   │   ├── metadata_validator.py
@@ -92,7 +93,8 @@ mace-hackathon/
 │   ├── parsers/             # Document parsers
 │   │   ├── pdf_parser.py
 │   │   └── docx_parser.py
-│   └── reports/             # Report generation
+│   ├── reports/             # Report generation (console/html/json)
+│   └── api/                 # FastAPI HTTP service (Gold PR 3)
 ├── tests/                   # Unit tests
 ├── docs/                    # Documentation
 └── examples/                # Sample documents
