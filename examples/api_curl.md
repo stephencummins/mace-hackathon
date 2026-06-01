@@ -56,13 +56,20 @@ Invoke-RestMethod -Method Post `
       { "check": "...", "status": "fail", "detail": "...", "suggested_fix": "..." }
     ]
   },
-  "content_error": null
+  "content_error": null,
+  "from_cache": false,
+  "usage": { "input_tokens": 1628, "output_tokens": 1649, "cache_creation_input_tokens": 0, "cache_read_input_tokens": 4800 },
+  "model": "claude-sonnet-4-6"
 }
 ```
 
 `content` is `null` when the server has no `ANTHROPIC_API_KEY` configured.
 `content_error` is a string when the Anthropic call failed (rate limit,
-network); the naming result is still returned.
+network); the naming result is still returned. `from_cache` is `true` when
+the result came from the document-level cache (`.cache/content-validator/`);
+the `usage` field reflects the original call's token counts so cost
+attribution works on cached responses too. Pass `?no_cache=true` on
+`/validate` to skip the cache.
 
 ## OpenAPI
 

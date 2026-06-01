@@ -125,6 +125,14 @@ def test_suggested_fix_optional_and_round_trips():
     assert fail_finding.model_dump()["suggested_fix"] == fix
 
 
+def test_thinking_omitted_for_models_that_dont_support_it():
+    # Haiku 4.5 does not support adaptive thinking — the request must not include it.
+    client = _mock_client(_fake_result())
+    validate_content(PDF_FIXTURE, client=client, model="claude-haiku-4-5")
+    kwargs = client.messages.parse.call_args.kwargs
+    assert "thinking" not in kwargs, f"thinking should be omitted on Haiku, got {kwargs.get('thinking')}"
+
+
 def test_rubric_instructs_claude_to_provide_fixes():
     # Regression: the rubric file must explain when/how to populate suggested_fix
     rubric = (Path(__file__).resolve().parents[1] / "src" / "validators" / "iso_19650_rubric.md").read_text(encoding="utf-8")

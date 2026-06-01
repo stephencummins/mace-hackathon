@@ -8,6 +8,7 @@ from collections import Counter
 from rich.console import Console
 from rich.table import Table
 
+from src.cost import compute_cost, format_usd
 from src.runner import DocReport
 
 _STATUS_SYMBOLS = {
@@ -80,8 +81,9 @@ def _render_summary(reports: list[DocReport], console: Console) -> None:
     counts: Counter[str] = Counter()
     naming_fails = 0
     cache_hits = 0
-    saved_input = 0
-    saved_output = 0
+    saved_cost = 0.0
+    fresh_cost = 0.0
+    fresh_tokens = 0
     for report in reports:
         if report.content_error:
             counts["error"] += 1
@@ -91,11 +93,16 @@ def _render_summary(reports: list[DocReport], console: Console) -> None:
             counts[report.content.overall_status] += 1
         if not report.naming.passed:
             naming_fails += 1
-        if report.from_cache:
-            cache_hits += 1
-            usage = report.cached_usage or {}
-            saved_input += int(usage.get("input_tokens") or 0)
-            saved_output += int(usage.get("output_tokens") or 0)
+        if report.usage and report.model:
+            cost = compute_cost(report.usage, report.model)
+            if report.from_cache:
+                cache_hits += 1
+                saved_cost += cost
+            else:
+                fresh_cost += cost
+                fresh_tokens += int(report.usage.get("input_tokens") or 0) + int(
+                    report.usage.get("output_tokens") or 0
+                )
 
     table = Table(title="Batch Summary", show_header=True, header_style="bold")
     table.add_column("Count", justify="right")
@@ -106,8 +113,15 @@ def _render_summary(reports: list[DocReport], console: Console) -> None:
             table.add_row(str(counts[key]), f"Content review: {key}")
     if naming_fails:
         table.add_row(str(naming_fails), "Naming non-conformant")
+    if fresh_cost > 0 or fresh_tokens > 0:
+        table.add_row(
+            format_usd(fresh_cost),
+            f"Estimated cost this run ({fresh_tokens:,} tokens)",
+        )
     if cache_hits:
-        saved = f"{saved_input:,} input + {saved_output:,} output tokens saved"
-        table.add_row(str(cache_hits), f"From cache ({saved})")
+        table.add_row(
+            str(cache_hits),
+            f"From cache (~{format_usd(saved_cost)} saved)",
+        )
     console.print()
     console.print(table)

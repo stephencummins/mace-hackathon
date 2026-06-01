@@ -43,6 +43,13 @@ def resolve_model(explicit: Optional[str] = None) -> str:
     return explicit or os.getenv("CLAUDE_MODEL") or DEFAULT_MODEL
 
 
+# Adaptive thinking is supported on Opus 4.6 / 4.7 and Sonnet 4.6. Haiku 4.5
+# and older models 400 if you ask for it, so we omit the parameter there.
+_ADAPTIVE_THINKING_MODELS = frozenset(
+    {"claude-opus-4-7", "claude-opus-4-6", "claude-sonnet-4-6"}
+)
+
+
 def call_claude(
     path: str | Path,
     client: anthropic.Anthropic,
@@ -56,10 +63,9 @@ def call_claude(
     pdf_bytes = Path(path).read_bytes()
     pdf_b64 = base64.standard_b64encode(pdf_bytes).decode("ascii")
 
-    response = client.messages.parse(
+    kwargs: dict = dict(
         model=model,
         max_tokens=16000,
-        thinking={"type": "adaptive"},
         system=[
             {
                 "type": "text",
@@ -91,7 +97,10 @@ def call_claude(
         ],
         output_format=ContentValidationResult,
     )
+    if model in _ADAPTIVE_THINKING_MODELS:
+        kwargs["thinking"] = {"type": "adaptive"}
 
+    response = client.messages.parse(**kwargs)
     usage = response.usage.model_dump() if hasattr(response.usage, "model_dump") else dict(response.usage)
     return response.parsed_output, usage
 

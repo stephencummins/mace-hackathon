@@ -63,8 +63,19 @@ _DEFAULT_OUTPUT = {"html": "compliance-report.html", "json": "compliance-report.
     is_flag=True,
     help="Skip the document-level result cache (force a fresh Claude call).",
 )
+@click.option(
+    "--model",
+    "model",
+    default=None,
+    help="Model id or alias (haiku/sonnet/opus). Overrides CLAUDE_MODEL env var.",
+)
 def check_compliance(
-    document: Path, fmt: str, output: Path | None, strict: bool, no_cache: bool
+    document: Path,
+    fmt: str,
+    output: Path | None,
+    strict: bool,
+    no_cache: bool,
+    model: str | None,
 ) -> None:
     """Validate one document or a folder of documents against ISO 19650.
 
@@ -81,7 +92,10 @@ def check_compliance(
         console.print(f"[dim]Scanning {len(paths)} document(s)...[/dim]")
 
     reports = validate_documents(
-        paths, progress=(fmt == "console"), use_cache=not no_cache
+        paths,
+        progress=(fmt == "console"),
+        use_cache=not no_cache,
+        model=model,
     )
 
     if fmt == "console":

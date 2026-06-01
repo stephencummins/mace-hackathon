@@ -139,7 +139,8 @@ def test_doc_report_to_json_dict_roundtrip():
     assert blob["content"]["findings"][0]["suggested_fix"] == "Add an 'Author' field to the title block."
     # cache fields default to inactive
     assert blob["from_cache"] is False
-    assert blob["cached_usage"] is None
+    assert blob["usage"] is None
+    assert blob["model"] is None
     import json
     assert json.dumps(blob)  # serializable
 
@@ -157,6 +158,9 @@ def test_cache_miss_then_hit(tmp_path):
     assert client.messages.parse.call_count == 1
     assert reports1[0].from_cache is False
     assert reports1[0].content is not None
+    # usage and model populated on fresh runs too (not just cache hits)
+    assert reports1[0].usage == _FAKE_USAGE
+    assert reports1[0].model == resolve_model()
 
     key = cache.cache_key(PASSING_FIXTURE.read_bytes(), _RUBRIC_TEXT, resolve_model())
     assert (tmp_path / f"{key}.json").exists()
@@ -167,8 +171,9 @@ def test_cache_miss_then_hit(tmp_path):
     assert reports2[0].from_cache is True
     assert reports2[0].content is not None
     assert reports2[0].content.overall_status == reports1[0].content.overall_status
-    assert reports2[0].cached_usage is not None
-    assert reports2[0].cached_usage["input_tokens"] == _FAKE_USAGE["input_tokens"]
+    assert reports2[0].usage is not None
+    assert reports2[0].usage["input_tokens"] == _FAKE_USAGE["input_tokens"]
+    assert reports2[0].model == resolve_model()
 
 
 def test_use_cache_false_bypasses_both_read_and_write(tmp_path):
