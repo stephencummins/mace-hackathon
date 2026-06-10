@@ -110,3 +110,20 @@ genuinely compliant:
 
 The goal: every false-positive either improves the rubric or is recorded
 as a known exception — never silently overridden.
+
+## Service management
+
+The operational paperwork lives in four sibling documents. This file is the
+index; the detail is there.
+
+| Document | Owns | When to read |
+|---|---|---|
+| [`RUNBOOK.md`](RUNBOOK.md) | Day-to-day operation, common failures and recovery, deployment models, rotation, escalation | Whenever something is wrong, or before promoting the tool to a non-laptop deployment |
+| [`SLA.md`](SLA.md) | Service targets: uptime, latency (per tier and per model), accuracy, cost caps, support hours, change-management notice | Before adopting the tool, and quarterly thereafter (the acceptance test is at the bottom of that file) |
+| [`ONBOARDING.md`](ONBOARDING.md) | How a new operator gets running (Part 1) and how a new department swaps the rubric for their own document type (Part 2) | First time anyone touches the tool, and whenever the scope expands to a new domain |
+| [`CHANGELOG.md`](CHANGELOG.md) | What changed and when, grouped by tier; the maintenance process for the file itself | After every merge — the Maintainer adds the entry as part of the PR, not retroactively |
+
+If you're adopting this tool past the hackathon, those four files plus
+this one are the operational baseline. The Promotion path in `RUNBOOK.md`
+covers what changes when ownership moves from the hackathon team to a
+specific department.

@@ -69,6 +69,9 @@ Every CLI and API validation appends one JSONL line to `.audit/validations.jsonl
 **How do I run the validator as an HTTP service?**
 Gold tier ships a small FastAPI service that wraps the same Bronze + Silver checks the CLI runs. Set `API_TOKEN` in your `.env` (the server refuses to start without it), then run `uvicorn src.api.main:app --reload`. Send a PDF to `POST /validate` as `multipart/form-data` with `Authorization: Bearer <API_TOKEN>`; the response is the same JSON the CLI emits with `--format json`. Full curl + PowerShell snippets are in `examples/api_curl.md`, and the OpenAPI docs are at `http://127.0.0.1:8000/docs` while the server is running.
 
+**Where's the runbook / SLA / onboarding guide?**
+Operational paperwork lives in four sibling files at the repo root: `RUNBOOK.md` (day-to-day operation, common failures and recovery, deployment models, rotation, escalation), `SLA.md` (uptime, latency, accuracy and cost targets — with the realistic hackathon-stage caveats spelled out), `ONBOARDING.md` (Part 1: new users; Part 2: how to swap the rubric for a different document type), and `CHANGELOG.md` (tier-grouped history plus the process for keeping it current). `GOVERNANCE.md` is the index — start there and follow the link that matches your question.
+
 **Should I use a personal or Mace GitHub account?**
 For the hackathon, use a personal GitHub account. The challenge repo is public and no sensitive Mace code or data is being committed, so there's no need to involve IT. If you don't have one, create a free account at github.com — you can register with your personal or Mace email address.
 

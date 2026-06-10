@@ -85,6 +85,10 @@ trees below are what participants build out.
 mace-hackathon/
 ├── check_compliance.py      # Main CLI entry point
 ├── GOVERNANCE.md            # Ownership, access, audit, rubric workflow (Platinum PR 3)
+├── RUNBOOK.md               # Day-to-day operation, failures, escalation (Platinum PR 4)
+├── SLA.md                   # Uptime / latency / accuracy / cost targets (Platinum PR 4)
+├── ONBOARDING.md            # New users + new document types (Platinum PR 4)
+├── CHANGELOG.md             # Tier-grouped history + maintenance process (Platinum PR 4)
 ├── src/
 │   ├── runner.py            # Batch validation (Gold PR 1)
 │   ├── cache.py             # Document-level result cache (Platinum PR 1)
