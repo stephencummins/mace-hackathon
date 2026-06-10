@@ -73,7 +73,7 @@ Join Slack: **[maice-workspace.slack.com](https://maice-workspace.slack.com)**
 - `#team-formation` — find teammates
 - `#announcements` — dates and updates
 
-## Optional learning
+## Train & Certify
 
 [Anthropic Academy](https://anthropic.skilljar.com) has free courses with completion certificates:
 - **Claude Code 101** — about 1 hour, good starting point if you've never used Claude Code before

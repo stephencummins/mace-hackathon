@@ -58,8 +58,14 @@ rules with whatever pattern matters to *your* team.
 
 ## 🚀 Challenge Tasks
 
-Pick a domain (see above), then ladder through three tiers. Each tier is
+Pick a domain (see above), then ladder through four tiers. Each tier is
 described generically — substitute the specifics of *your* document type.
+
+> **The shipped worked example already implements all four tiers** for
+> ISO 19650. Read the tier checklists below either as the task list for
+> your own domain, *or* as a tour of what's already in the repo — every
+> tier links to the file(s) that deliver it. The [CHANGELOG](CHANGELOG.md)
+> has the full history of how it was built, commit by commit.
 
 ### 🥉 Bronze Level: Structural Validation
 **No AI required. Pure pattern matching — everyone can ship this in the first hour.**
@@ -126,8 +132,8 @@ for your document type.
 
 ### Prerequisites
 - Python 3.11+
-- Anthropic API key
-- Basic understanding of BIM/construction documents
+- Anthropic API key (see [REGISTRATION.md](REGISTRATION.md) for the Mace-network specifics)
+- For the worked example, a basic familiarity with BIM/construction documents helps — but the same harness works for any document type your team owns
 
 ### Installation
 
@@ -145,7 +151,7 @@ pip install -r requirements.txt
 
 # Configure API key
 cp .env.example .env
-# Edit .env and add your ANTHROPIC_API_KEY
+# Edit .env and add your ANTHROPIC_API_KEY (and API_TOKEN if running the HTTP service)
 ```
 
 ### Quick Start
@@ -154,52 +160,96 @@ cp .env.example .env
 # Verify the harness
 python check_compliance.py --help
 
-# Run the stub on a provided example (it returns placeholder output until
-# you implement the real validators — that's the challenge).
+# Validate a BIM PDF (Bronze naming + Silver content analysis via Claude)
 python check_compliance.py examples/MAC-LIBDM-XX-00-DR-A-001_P01.pdf
+
+# Batch a directory, write an HTML report
+python check_compliance.py path/to/folder/ --format html
+
+# Run the HTTP service (requires API_TOKEN in .env)
+uvicorn src.api.main:app --reload
+
+# Inspect what's been validated and what it cost
+python -m src.audit_report --last 20
+python -m src.cost_report
 ```
 
-Two filename‑demonstration PDFs ship in `examples/` (one ISO 19650 compliant,
-one not). For Silver/Gold content validation, use your own BIM document.
-Step‑by‑step walkthrough: see [REGISTRATION.md](REGISTRATION.md) Step 5
-("First hour after cloning").
+Two filename-demonstration PDFs ship in `examples/` (one ISO 19650 compliant,
+one not — see [examples/README.md](examples/README.md)). The Silver content
+checks need a real document with sections, metadata, and revision history to
+produce meaningful findings — bring your own BIM document, or build a fixture
+set per the *new document types* path in [ONBOARDING.md](ONBOARDING.md).
 
-Batch validation and report generation (e.g. `batch_validate.py`,
-`generate_report.py`) are examples of commands your Silver/Gold solution
-might expose; they are not provided.
+For a full walkthrough of the first hour after cloning, see
+[REGISTRATION.md](REGISTRATION.md) Step 5. For day-to-day operation once
+you're running, see [RUNBOOK.md](RUNBOOK.md).
 
 ## 📚 Project Structure
 
-> **Target layout.** Today the repo ships `check_compliance.py` (a stub),
-> `requirements.txt`, `.env.example`, the markdown docs, `LICENSE`, `assets/`,
-> and `examples/` (two filename‑demonstration PDFs — see
-> [examples/README.md](examples/README.md)). The `src/`, `tests/`, and `docs/`
-> trees below are what you build out as part of the challenge.
+This is what the repo actually ships as of the current Platinum tier. The
+shape below covers the worked ISO 19650 example; the harness is generic and
+the same layout works for other document types (see ONBOARDING.md Part 2).
 
 ```
 mace-hackathon/
-├── README.md                      # This file
-├── requirements.txt               # Python dependencies
-├── .env.example                   # Environment variables template
-├── check_compliance.py            # Main validation script
+├── README.md                  # This file
+├── HACKATHON.md               # Challenge brief, levels, judging
+├── REGISTRATION.md            # Setup, accounts, first hour after cloning
+├── CLAUDE.md                  # Guidance for Claude Code when working in this repo
+├── FAQ.md                     # Short answers to common questions
+├── GOVERNANCE.md              # Ownership, access, audit, rubric workflow (index for the operational docs)
+├── RUNBOOK.md                 # Day-to-day operation, failures, escalation
+├── SLA.md                     # Uptime / latency / accuracy / cost targets
+├── ONBOARDING.md              # New users + new document types
+├── CHANGELOG.md               # Tier-grouped history + maintenance process
+├── LICENSE                    # MIT
+├── requirements.txt           # Python dependencies
+├── .env.example               # Environment variables template
+├── check_compliance.py        # Main CLI entry point
 ├── src/
+│   ├── runner.py              # Batch validation (Gold PR 1)
+│   ├── cache.py               # Document-level result cache (Platinum PR 1)
+│   ├── cost.py                # Pricing + cost computation (Platinum PR 2)
+│   ├── cost_report.py         # python -m src.cost_report (Platinum PR 2)
+│   ├── audit.py               # Validation audit trail (Platinum PR 3)
+│   ├── audit_report.py        # python -m src.audit_report (Platinum PR 3)
 │   ├── validators/
-│   │   ├── naming_validator.py    # File naming checker
-│   │   ├── metadata_validator.py  # Metadata checker
-│   │   └── content_validator.py   # AI-powered content analysis
-│   ├── parsers/
-│   │   ├── pdf_parser.py          # PDF document parser
-│   │   └── docx_parser.py         # Word document parser
-│   └── reports/
-│       └── report_generator.py    # Compliance report generator
-├── tests/                         # Unit tests
-├── docs/
-│   ├── ISO_19650_GUIDE.md        # ISO 19650 quick reference
-│   └── API_REFERENCE.md          # API documentation
-└── examples/
-    ├── sample_compliant.pdf       # Example compliant document
-    └── sample_non_compliant.pdf   # Example with issues
+│   │   ├── naming_validator.py    # Bronze: filename pattern check
+│   │   ├── content_validator.py   # Silver: Claude content analysis
+│   │   └── iso_19650_rubric.md    # The shipped rubric (swap for a new domain)
+│   ├── reports/                   # Console / HTML / JSON report renderers (Gold PR 1)
+│   └── api/
+│       └── main.py            # FastAPI HTTP service (Gold PR 3)
+├── tests/                     # 72 pytest cases covering runner, validators, cache, cost, audit, API
+├── examples/
+│   ├── MAC-LIBDM-XX-00-DR-A-001_P01.pdf  # Bronze-compliant fixture
+│   ├── floor plan ground.pdf             # Bronze-non-compliant fixture
+│   └── api_curl.md            # HTTP API request examples
+└── assets/                    # Hackathon banner image
 ```
+
+Three runtime directories are gitignored and created on first use:
+`.cache/` (document-level validation cache), `.audit/` (append-only audit
+trail), and any `compliance-report.{html,json}` files batch runs produce.
+
+## 🛠️ Operating the tool (post-hackathon)
+
+If you're not here to *build* but to *run* the validator — your team
+finished the hackathon and now wants to use it — these are the docs you
+need, in reading order:
+
+| Doc | What it gives you |
+|---|---|
+| [ONBOARDING.md](ONBOARDING.md) Part 1 | Step-by-step from clone to first validation. Start here. |
+| [ONBOARDING.md](ONBOARDING.md) Part 2 | If you're validating something other than BIM — how to swap the rubric, parser, and fixtures for your domain. |
+| [RUNBOOK.md](RUNBOOK.md) | Daily checks, where files live, every common failure with its fix, deployment shapes, rotation cadence, P0–P3 escalation. |
+| [SLA.md](SLA.md) | Uptime, latency, accuracy, and cost targets — with realistic hackathon-stage numbers and a quarterly acceptance test. |
+| [GOVERNANCE.md](GOVERNANCE.md) | Ownership roles, access control, audit trail spec, rubric-change workflow, false-positive escalation. The index that ties the rest together. |
+| [CHANGELOG.md](CHANGELOG.md) | What changed, when, grouped by tier. Maintained per-PR. |
+
+For one-off questions, [FAQ.md](FAQ.md) is the fastest route. For
+hackathon judging criteria and the original brief,
+[HACKATHON.md](HACKATHON.md).
 
 ## 🎓 Resources
 

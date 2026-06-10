@@ -103,31 +103,34 @@ python check_compliance.py --help
 # 1) Verify the harness runs
 python check_compliance.py --help
 
-# 2) Try it against a provided example (the stub returns placeholder output
-#    until you implement the real validators — that's the challenge)
+# 2) Run it against a shipped example — Bronze (naming) + Silver (Claude
+#    content analysis) both work against the ISO 19650 rubric out of the box
 python check_compliance.py examples/MAC-LIBDM-XX-00-DR-A-001_P01.pdf
 
 # 3) Drop into Claude inside the repo
 claude
 ```
 
-Then paste one of these prompts into the Claude terminal:
+The shipped worked example covers all four tiers (Bronze → Platinum) for
+ISO 19650, so you have two starting paths. Paste one of these into the
+Claude terminal:
 
-**Option A — BIM / ISO 19650 worked example (copy exactly):**
+**Option A — BIM / ISO 19650 (rebuild the worked example to learn the workflow):**
 
-> Implement Bronze-level naming validation for BIM / ISO 19650 documents. The pattern is `PROJECT-ORIGINATOR-VOLUME-LEVEL-TYPE-ROLE-NUMBER_REVISION`. Write `src/validators/naming_validator.py`, wire it into `check_compliance.py`, and add a unit test under `tests/`. Use `examples/MAC-LIBDM-XX-00-DR-A-001_P01.pdf` as the passing fixture and `examples/floor plan ground.pdf` as the failing one.
+> I want to build the Bronze validator from scratch as a learning exercise. The pattern is `PROJECT-ORIGINATOR-VOLUME-LEVEL-TYPE-ROLE-NUMBER_REVISION`. Start from a clean slate: revert `src/validators/naming_validator.py` if needed, write it from scratch, wire it into `check_compliance.py`, and add a unit test. Use `examples/MAC-LIBDM-XX-00-DR-A-001_P01.pdf` as the passing fixture and `examples/floor plan ground.pdf` as the failing one.
 
-**Option B — your own document type (fill in the blanks):**
+**Option B — your own document type (use the harness, swap the rubric):**
 
-> Implement Bronze-level naming validation for **[your document type]** documents. The valid naming pattern is **[describe your pattern]**. Write `src/validators/naming_validator.py`, wire it into `check_compliance.py`, and add a unit test under `tests/`. Create a passing fixture called `examples/valid_example.[ext]` and a failing one called `examples/invalid_example.[ext]`.
+> Build a validator for **[your document type]** documents. The valid naming pattern is **[describe your pattern]**. Update `src/validators/naming_validator.py` to enforce that pattern, swap `src/validators/iso_19650_rubric.md` for a rubric covering my domain's content rules, and add a unit test. Create a passing fixture called `examples/valid_example.[ext]` and a failing one called `examples/invalid_example.[ext]`. Walk me through it — I'll feed you the content rules step by step.
 
-Iterate until your own compliant/non‑compliant fixtures behave correctly
-(or, for the BIM worked example, until
-`examples/MAC-LIBDM-XX-00-DR-A-001_P01.pdf` passes and
-`examples/floor plan ground.pdf` fails). Then:
+For Option B, the *new document types* walkthrough in
+[ONBOARDING.md](ONBOARDING.md) Part 2 covers the full rubric-swap path
+(fixtures, parser changes, fixture set, tests). Iterate until your
+compliant/non-compliant fixtures behave correctly, then:
 
-1. Move on to **Silver** (AI content analysis) or **Gold** (full suite) — see
-   the Challenge Tasks in [README.md](README.md).
+1. Move on to **Silver** (AI content analysis), **Gold** (batch + HTTP API),
+   or **Platinum** (cache, cost, audit, governance) — see the Challenge
+   Tasks in [README.md](README.md).
 2. Read [HACKATHON.md](HACKATHON.md) for rules + judging.
 3. Bring a working demo on the day — or ask in Slack `#announcements` for submission details.
 
