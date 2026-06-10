@@ -63,6 +63,9 @@ The validator defaults to **`claude-sonnet-4-6`** — good balance of quality an
 **How much will this cost?**
 Most of the cost is output tokens (the findings + suggested fixes). At Sonnet 4.6 rates ($3 / $15 per million input/output), a typical Bronze+Silver run on a real BIM document is around **$0.003–$0.01 per doc**. Run `python -m src.cost_report` against your populated `.cache/content-validator/` to get a real corpus-driven breakdown: per-model totals, monthly projection at your expected volume, and ROI versus a manual reviewer at a configurable hourly rate. Cache hits cost $0 (no API call), so re-validation of unchanged documents is free.
 
+**Where's the audit trail for validations?**
+Every CLI and API validation appends one JSONL line to `.audit/validations.jsonl` (gitignored). Each line records a timestamp, the source (`cli` / `api`), the principal (OS user for CLI, a SHA-256 prefix of the bearer token for API — never the raw token), the document name + content hash, the model, whether the result came from cache, the finding counts, and the dollar cost. Inspect with `python -m src.audit_report` (filters available: `--last N`, `--source`, `--principal`). The full process — ownership, access policy, rubric-change workflow, false-positive escalation — is documented in `GOVERNANCE.md` at the repo root.
+
 **How do I run the validator as an HTTP service?**
 Gold tier ships a small FastAPI service that wraps the same Bronze + Silver checks the CLI runs. Set `API_TOKEN` in your `.env` (the server refuses to start without it), then run `uvicorn src.api.main:app --reload`. Send a PDF to `POST /validate` as `multipart/form-data` with `Authorization: Bearer <API_TOKEN>`; the response is the same JSON the CLI emits with `--format json`. Full curl + PowerShell snippets are in `examples/api_curl.md`, and the OpenAPI docs are at `http://127.0.0.1:8000/docs` while the server is running.
 

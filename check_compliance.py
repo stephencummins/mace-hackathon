@@ -9,6 +9,7 @@ Usage:
     python check_compliance.py --help
 """
 
+import getpass
 import sys
 
 # Use the OS cert store so Python trusts corporate TLS-intercepting proxies
@@ -24,6 +25,7 @@ from dotenv import load_dotenv
 import click
 from rich.console import Console
 
+from src import audit
 from src.reports import render_console, render_html, render_json
 from src.runner import DocReport, iter_pdfs, validate_documents
 
@@ -96,6 +98,9 @@ def check_compliance(
         progress=(fmt == "console"),
         use_cache=not no_cache,
         model=model,
+        audit_dir=audit.DEFAULT_DIR,
+        audit_source="cli",
+        audit_principal=getpass.getuser(),
     )
 
     if fmt == "console":

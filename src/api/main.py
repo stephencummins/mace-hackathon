@@ -26,6 +26,7 @@ except ImportError:
 from dotenv import load_dotenv
 from fastapi import Depends, FastAPI, Header, HTTPException, UploadFile, status
 
+from src import audit
 from src.runner import validate_documents
 
 load_dotenv()
@@ -59,8 +60,9 @@ app = FastAPI(
 )
 
 
-def require_token(authorization: Optional[str] = Header(default=None)) -> None:
-    """Bearer-token auth dependency. Returns 401 on missing/wrong token."""
+def require_token(authorization: Optional[str] = Header(default=None)) -> str:
+    """Bearer-token auth dependency. Returns the hashed principal for audit
+    logging on success; raises 401 on missing/wrong token."""
     if _TOKEN is None:
         # Should not happen: lifespan refuses to start without API_TOKEN.
         raise HTTPException(status_code=500, detail="Server not configured")
@@ -77,6 +79,7 @@ def require_token(authorization: Optional[str] = Header(default=None)) -> None:
             detail="Invalid token",
             headers={"WWW-Authenticate": "Bearer"},
         )
+    return audit.principal_for_token(presented)
 
 
 @app.get("/healthz")
@@ -85,8 +88,12 @@ def healthz() -> dict:
     return {"status": "ok"}
 
 
-@app.post("/validate", dependencies=[Depends(require_token)])
-def validate(file: UploadFile, no_cache: bool = False) -> dict:
+@app.post("/validate")
+def validate(
+    file: UploadFile,
+    no_cache: bool = False,
+    principal: str = Depends(require_token),
+) -> dict:
     """Validate one PDF against ISO 19650.
 
     Accepts a single PDF via ``multipart/form-data``. Returns the same JSON
@@ -100,5 +107,12 @@ def validate(file: UploadFile, no_cache: bool = False) -> dict:
     with tempfile.TemporaryDirectory() as tmpdir:
         target = Path(tmpdir) / safe_name
         target.write_bytes(file.file.read())
-        [report] = validate_documents([target], progress=False, use_cache=not no_cache)
+        [report] = validate_documents(
+            [target],
+            progress=False,
+            use_cache=not no_cache,
+            audit_dir=audit.DEFAULT_DIR,
+            audit_source="api",
+            audit_principal=principal,
+        )
         return report.to_json_dict()

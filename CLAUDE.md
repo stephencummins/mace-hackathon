@@ -84,8 +84,14 @@ trees below are what participants build out.
 ```
 mace-hackathon/
 ├── check_compliance.py      # Main CLI entry point
+├── GOVERNANCE.md            # Ownership, access, audit, rubric workflow (Platinum PR 3)
 ├── src/
 │   ├── runner.py            # Batch validation (Gold PR 1)
+│   ├── cache.py             # Document-level result cache (Platinum PR 1)
+│   ├── cost.py              # Pricing + cost computation (Platinum PR 2)
+│   ├── cost_report.py       # python -m src.cost_report (Platinum PR 2)
+│   ├── audit.py             # Validation audit trail (Platinum PR 3)
+│   ├── audit_report.py      # python -m src.audit_report (Platinum PR 3)
 │   ├── validators/          # Validation logic
 │   │   ├── naming_validator.py
 │   │   ├── metadata_validator.py

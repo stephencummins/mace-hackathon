@@ -58,6 +58,9 @@ logs/
 # Document validation cache (Platinum PR 1)
 .cache/
 
+# Audit trail (Platinum PR 3) — keep history out of source control
+.audit/
+
 # Generated compliance reports (Gold PR 1 default output path)
 compliance-report.html
 compliance-report.json

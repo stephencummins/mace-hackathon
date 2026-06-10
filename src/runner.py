@@ -22,7 +22,7 @@ from rich.progress import (
     TimeElapsedColumn,
 )
 
-from src import cache
+from src import audit, cache
 from src.validators import (
     ContentValidationResult,
     ValidationResult,
@@ -84,6 +84,9 @@ def validate_documents(
     cache_dir: Optional[Path] = None,
     use_cache: bool = True,
     model: Optional[str] = None,
+    audit_dir: Optional[Path] = None,
+    audit_source: str = "runner",
+    audit_principal: str = "",
 ) -> list[DocReport]:
     """Validate each path. anthropic.APIError is captured per-doc; the batch
     continues even if one document's Silver check fails.
@@ -95,6 +98,10 @@ def validate_documents(
     Model selection: ``model`` (if set) overrides the ``CLAUDE_MODEL`` env var
     and the built-in default. Pass an alias (haiku/sonnet/opus) or a full id;
     aliases are resolved by ``src.cost.resolve_alias``.
+
+    Audit: when ``audit_dir`` is set (not None), one JSONL line per doc is
+    appended to ``<audit_dir>/validations.jsonl`` with the given
+    ``audit_source`` and ``audit_principal``. Pass ``None`` to disable.
     """
     from src.cost import resolve_alias
 
@@ -102,6 +109,18 @@ def validate_documents(
     reports: list[DocReport] = []
     effective_cache_dir = cache_dir if cache_dir is not None else cache.DEFAULT_DIR
     effective_model = resolve_model(resolve_alias(model) if model else None)
+
+    def _post(report: DocReport) -> None:
+        if audit_dir is not None:
+            try:
+                audit.log_validation(
+                    report,
+                    source=audit_source,
+                    principal=audit_principal,
+                    audit_dir=audit_dir,
+                )
+            except OSError:
+                pass  # never let audit-write failures break a validation
 
     if progress and paths_list:
         with Progress(
@@ -114,11 +133,15 @@ def validate_documents(
             task = bar.add_task("Validating...", total=len(paths_list))
             for path in paths_list:
                 bar.update(task, description=f"Validating {path.name}")
-                reports.append(_validate_one(path, client, effective_cache_dir, use_cache, effective_model))
+                report = _validate_one(path, client, effective_cache_dir, use_cache, effective_model)
+                _post(report)
+                reports.append(report)
                 bar.update(task, advance=1)
     else:
         for path in paths_list:
-            reports.append(_validate_one(path, client, effective_cache_dir, use_cache, effective_model))
+            report = _validate_one(path, client, effective_cache_dir, use_cache, effective_model)
+            _post(report)
+            reports.append(report)
 
     return reports
 
