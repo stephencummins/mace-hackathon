@@ -64,3 +64,6 @@ logs/
 # Generated compliance reports (Gold PR 1 default output path)
 compliance-report.html
 compliance-report.json
+
+# Generated PowerPoint decks — regenerable from presentations/build_*.py
+presentations/*.pptx
